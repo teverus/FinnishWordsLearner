@@ -10,7 +10,7 @@ def create_a_title(text: str):
     print(f"{'=' * SCREEN_WIDTH}")
 
 
-def show_options(options: list, last_is_zero=True):
+def show_options(options: list, last_is_zero=False):
     available_options = []
 
     for index, element in enumerate(options, 1):
