@@ -22,9 +22,7 @@ def show_options(options: list, last_is_zero=False):
 
     while user_choice not in available_options:
         guidelines = ", ".join(available_options)
-        print(f"\nPlease, enter one of these values: {guidelines}")
-        _ = input('Hit "Enter" to try again... ')
-
+        print(f"[WARNING] You must enter one of these values: {guidelines}")
         user_choice = input("\nPlease, enter your choice: ")
 
     return int(user_choice)
