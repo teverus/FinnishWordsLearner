@@ -10,7 +10,11 @@ def create_a_title(text: str):
     print(f"{'=' * SCREEN_WIDTH}")
 
 
-def show_options(options: list, last_is_zero=False):
+def create_a_border(symbol: str = "-"):
+    print(f"{f'{symbol}' * SCREEN_WIDTH}")
+
+
+def show_options(options: list, last_is_zero: bool = False) -> int:
     available_options = []
 
     for index, element in enumerate(options, 1):
