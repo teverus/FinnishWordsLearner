@@ -39,9 +39,12 @@ class StartApplication:
         print(f" {'Advanced'.center(18)} | | Total: 45  | Left this run: 45")
         print(f" {''.center(18)} | | Total: 43  | Left this run: 43")
         create_a_border()
-        print("")
         print("Translate: terve")
-        input(">>> ")
+        user_choice = input(">>> ")
+        create_a_border()
+        print("CORRECT :)".center(SCREEN_WIDTH))
+        create_a_border()
+        input('''Press "Enter" to continue...''')
 
 
 if __name__ == '__main__':
