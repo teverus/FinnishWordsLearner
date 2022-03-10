@@ -1,4 +1,4 @@
-mode con: cols=71 lines=30
+mode con: cols=72 lines=40
 title=Welcome to Finnish Learner
 
 py main.py

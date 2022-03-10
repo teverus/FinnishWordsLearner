@@ -3,8 +3,12 @@ import os
 from Code.constants import SCREEN_WIDTH
 
 
-def create_a_title(text: str):
+def clear_screen():
     os.system("cls")
+
+
+def create_a_title(text: str):
+    clear_screen()
     print(f"{'=' * SCREEN_WIDTH}")
     print(text.upper().center(SCREEN_WIDTH))
     print(f"{'=' * SCREEN_WIDTH}")
