@@ -7,10 +7,18 @@ def clear_screen():
     os.system("cls")
 
 
-def create_a_title(text: str):
+def create_a_title(text: str, upper=True):
     clear_screen()
+
     print(f"{'=' * SCREEN_WIDTH}")
-    print(text.upper().center(SCREEN_WIDTH))
+
+    text = text.split("\n") if "\n" in text else text
+    text = [text] if not isinstance(text, list) else text
+
+    for line in text:
+        line = line.upper() if upper else line
+        print(line.center(SCREEN_WIDTH))
+
     print(f"{'=' * SCREEN_WIDTH}")
 
 

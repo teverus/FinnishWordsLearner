@@ -1,5 +1,5 @@
 from Code.constants import *
-from Code.ui_functions import create_a_border, clear_screen
+from Code.ui_functions import create_a_border, create_a_title
 
 
 class StartApplication:
@@ -8,11 +8,7 @@ class StartApplication:
         self.run()
 
     def run(self):
-        clear_screen()
-        create_a_border("=")
-        print('''If you don't know a word, just hit "Enter"'''.center(SCREEN_WIDTH))
-        print(''' Enter "q" or "exit" to exit | Enter "r" or "restart" to restart'''.center(SCREEN_WIDTH))
-        create_a_border("=")
+        create_a_title(USER_TIPS, upper=False)
         aaa = "\u2580"
         zzz = "."
         print(f"  CORRECT  20 |{aaa * 20}{zzz * 30}| 40 %")
@@ -44,8 +40,8 @@ class StartApplication:
         create_a_border()
         print("CORRECT :)".center(SCREEN_WIDTH))
         create_a_border()
-        input('''Press "Enter" to continue...''')
+        input("""Press "Enter" to continue...""")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     StartApplication()
