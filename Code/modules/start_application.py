@@ -47,8 +47,10 @@ class StartApplication:
         create_a_title(USER_TIPS, upper=False)
         show_run_statistics(self.stats)
         show_word_tiers(self.stats)
+
         print("Translate: terve")
         user_choice = input(">>> ")
+
         create_a_border()
         print("CORRECT :)".center(SCREEN_WIDTH))
         create_a_border()

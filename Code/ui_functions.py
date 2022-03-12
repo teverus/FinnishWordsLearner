@@ -23,7 +23,7 @@ def create_a_title(text: str, upper=True):
 
 
 def create_a_border(symbol: str = "-"):
-    print(f"{f'{symbol}' * SCREEN_WIDTH}")
+    print(f"{symbol * SCREEN_WIDTH}")
 
 
 def show_options(options: list, last_is_zero: bool = False) -> int:
