@@ -21,6 +21,25 @@ class Statistics:
     CORRECT = "correct"
     INCORRECT = "incorrect"
     TOTAL = "total"
+    TIERS = "tiers"
+    CURRENT_TIER = "current tier"
+
+
+class Tier:
+    BEGINNER = "Beginner"
+    PRE_INTERMEDIATE = "Pre-Intermediate"
+    INTERMEDIATE = "Intermediate"
+    UPPER_INTERMEDIATE = "Upper-Intermediate"
+    ADVANCED = "Advanced"
+    ALL = [BEGINNER, PRE_INTERMEDIATE, INTERMEDIATE, UPPER_INTERMEDIATE, ADVANCED]
+    MAX_LENGTH = max([len(_) for _ in ALL])
+
+    LOWER = "lower"
+    MIDDLE = "middle"
+    UPPER = "upper"
+
+    TOTAL = "total"
+    LEFT = "left"
 
 
 config = ConfigParser()

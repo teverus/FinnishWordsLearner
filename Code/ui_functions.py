@@ -1,5 +1,4 @@
 import os
-from math import ceil
 
 from Code.constants import *
 
@@ -45,7 +44,7 @@ def show_options(options: list, last_is_zero: bool = False) -> int:
     return int(user_choice)
 
 
-def show_run_statistics(stats):
+def show_run_statistics(stats: dict):
     correct = stats[Statistics.CORRECT]
     incorrect = stats[Statistics.INCORRECT]
     total = correct + incorrect
@@ -68,3 +67,39 @@ def show_run_statistics(stats):
     print(f" INCORRECT {incorrect:02} |{incorrect_bar}| {incorrect_percentage:02} %")
     print(f"   TOTAL   {total:02} |{total_bar}| {total_percentage} %")
     create_a_border()
+
+
+def get_longest_total_number(stats: dict) -> int:
+    max_number = []
+    for element in list(stats[Statistics.TIERS].values()):
+        for key, value in element.items():
+            max_number.append(value[Tier.TOTAL])
+
+    return len(str(max(max_number))) + 1
+
+
+def show_word_tiers(stats: dict):
+    ____ = "".center(Tier.MAX_LENGTH)
+    max_total = get_longest_total_number(stats)
+    current_tick = stats[Statistics.CURRENT_TIER]
+
+    for key, value in stats[Statistics.TIERS].items():
+        name = key.center(Tier.MAX_LENGTH)
+
+        total_low = f"{value[Tier.LOWER][Tier.TOTAL]}".ljust(max_total)
+        total_mid = f"{value[Tier.MIDDLE][Tier.TOTAL]}".ljust(max_total)
+        total_top = f"{value[Tier.UPPER][Tier.TOTAL]}".ljust(max_total)
+
+        left_low = f"{value[Tier.LOWER][Tier.LEFT]}".ljust(max_total)
+        left_mid = f"{value[Tier.MIDDLE][Tier.LEFT]}".ljust(max_total)
+        left_top = f"{value[Tier.UPPER][Tier.LEFT]}".ljust(max_total)
+
+        tick_low = WHITE_BLOCK_FULL if current_tick == [key, Tier.LOWER] else " "
+        tick_mid = WHITE_BLOCK_FULL if current_tick == [key, Tier.MIDDLE] else " "
+        tick_top = WHITE_BLOCK_FULL if current_tick == [key, Tier.UPPER] else " "
+
+        print(f" {____} |{tick_low}| Total: {total_low}| Left this run: {left_low}")
+        print(f" {name} |{tick_mid}| Total: {total_mid}| Left this run: {left_mid}")
+        print(f" {____} |{tick_top}| Total: {total_top}| Left this run: {left_top}")
+
+        create_a_border()
