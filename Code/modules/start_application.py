@@ -1,20 +1,18 @@
 from Code.constants import *
-from Code.ui_functions import create_a_border, create_a_title
+from Code.ui_functions import create_a_border, create_a_title, show_run_statistics
 
 
 class StartApplication:
     def __init__(self):
-        a = 1
+        self.stats = {
+            Statistics.CORRECT: 83,
+            Statistics.INCORRECT: 4,
+        }
         self.run()
 
     def run(self):
         create_a_title(USER_TIPS, upper=False)
-        aaa = "\u2580"
-        zzz = "."
-        print(f"  CORRECT  20 |{aaa * 20}{zzz * 30}| 40 %")
-        print(f" INCORRECT 30 |{aaa * 30}{zzz * 20}| 60 %")
-        print(f"   TOTAL   50 |{WHITE_BLOCK_FULL * 25}{LIGHT_SHADOW * 25}| 50 %")
-        create_a_border()
+        show_run_statistics(self.stats)
         print(f" {''.center(18)} | | Total: 11  | Left this run: 0")
         print(f" {'Beginner'.center(18)} | | Total: 2   | Left this run: 0")
         print(f" {''.center(18)} | | Total: 3   | Left this run: 0")

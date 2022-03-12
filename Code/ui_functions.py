@@ -1,6 +1,7 @@
 import os
+from math import ceil
 
-from Code.constants import SCREEN_WIDTH
+from Code.constants import *
 
 
 def clear_screen():
@@ -42,3 +43,28 @@ def show_options(options: list, last_is_zero: bool = False) -> int:
         user_choice = input("\nPlease, enter your choice: ")
 
     return int(user_choice)
+
+
+def show_run_statistics(stats):
+    correct = stats[Statistics.CORRECT]
+    incorrect = stats[Statistics.INCORRECT]
+    total = correct + incorrect
+    words_per_run = int(CONFIG[Settings.WORDS_PER_RUN])
+
+    correct_percentage = round(correct / total * 100)
+    incorrect_percentage = round(incorrect / total * 100)
+    total_percentage = round(total / words_per_run * 100)
+
+    correct_percentage_half = round(correct_percentage / 2)
+    incorrect_percentage_half = round(incorrect_percentage / 2)
+    total_percentage_half = round(total_percentage / 2)
+    remaining = 50 - total_percentage_half
+
+    correct_bar = f"{WHITE_BLOCK_UPPER * correct_percentage_half}{DOT * incorrect_percentage_half}"
+    incorrect_bar = f"{WHITE_BLOCK_UPPER * incorrect_percentage_half}{DOT * correct_percentage_half}"
+    total_bar = f"{WHITE_BLOCK_FULL * total_percentage_half}{LIGHT_SHADOW * remaining}"
+
+    print(f"  CORRECT  {correct:02} |{correct_bar}| {correct_percentage:02} %")
+    print(f" INCORRECT {incorrect:02} |{incorrect_bar}| {incorrect_percentage:02} %")
+    print(f"   TOTAL   {total:02} |{total_bar}| {total_percentage} %")
+    create_a_border()
