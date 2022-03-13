@@ -4,7 +4,8 @@ from Code.ui_functions import (
     create_a_border,
     create_a_title,
     show_run_statistics,
-    show_word_tiers, show_translate_prompt,
+    show_word_tiers,
+    show_translate_prompt,
 )
 
 
