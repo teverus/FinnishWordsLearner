@@ -1,4 +1,5 @@
 from Code.constants import *
+from Code.db_functions import get_all_words
 from Code.functions import get_answer
 from Code.ui_functions import (
     create_a_border,
@@ -11,6 +12,7 @@ from Code.ui_functions import (
 
 class StartApplication:
     def __init__(self):
+        self.all_words = get_all_words()
         self.stats = {
             Statistics.CORRECT: 83,
             Statistics.INCORRECT: 4,
