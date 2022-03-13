@@ -107,3 +107,16 @@ def show_word_tiers(stats: dict):
 
 def show_translate_prompt(word: str):
     print(f"Translate: {word}")
+
+
+def get_answer() -> str:
+    answer = input(">>> ").strip()
+
+    if answer in ["q", "exit"]:
+        input("Press enter to exit...")
+        exit()
+    elif answer in ["r", "restart"]:
+        input("Press enter to restart...")
+        return None
+    else:
+        return answer.replace("a:", "ä").replace("o:", "ö")

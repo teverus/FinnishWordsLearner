@@ -14,6 +14,7 @@ USER_TIPS = """If you don't know a word, just hit "Enter"\nEnter "q" or "exit" t
 
 ALL_WORDS = "all_words.xlsx"
 SCORE = "Score"
+COUNT = "Count"
 
 
 class Settings:
@@ -21,11 +22,10 @@ class Settings:
 
 
 class Statistics:
-    CORRECT = "correct"
-    INCORRECT = "incorrect"
-    TOTAL = "total"
-    TIERS = "tiers"
-    CURRENT_TIER = "current tier"
+    CORRECT = "Correct"
+    INCORRECT = "Incorrect"
+    TIERS = "Tiers"
+    CURRENT_TIER = "Current tier"
 
 
 class Tier:
@@ -34,16 +34,24 @@ class Tier:
     INTERMEDIATE = "Intermediate"
     UPPER_INTERMEDIATE = "Upper-Intermediate"
     ADVANCED = "Advanced"
-    ALL = [BEGINNER, PRE_INTERMEDIATE, INTERMEDIATE, UPPER_INTERMEDIATE, ADVANCED]
-    MAX_LENGTH = max([len(_) for _ in ALL])
+    ALL_TIERS = [BEGINNER, PRE_INTERMEDIATE, INTERMEDIATE, UPPER_INTERMEDIATE, ADVANCED]
+    MAX_LENGTH = max([len(_) for _ in ALL_TIERS])
 
-    LOWER = "lower"
-    MIDDLE = "middle"
-    UPPER = "upper"
+    LOWER = "Lower"
+    MIDDLE = "Middle"
+    UPPER = "Upper"
+    ALL_LEVELS = [LOWER, MIDDLE, UPPER]
 
-    TOTAL = "total"
-    LEFT = "left"
+    TOTAL = "Total"
+    LEFT = "Left"
 
+
+SCORE_TO_TIER = {}
+i = 0
+for tier in Tier.ALL_TIERS:
+    for level in Tier.ALL_LEVELS:
+        SCORE_TO_TIER[i] = [tier, level]
+        i += 1
 
 config = ConfigParser()
 config.read(SETTINGS_FILE)
