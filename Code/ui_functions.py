@@ -103,3 +103,7 @@ def show_word_tiers(stats: dict):
         print(f" {____} |{tick_top}| Total: {total_top}| Left this run: {left_top}")
 
         create_a_border()
+
+
+def show_translate_prompt(word: str):
+    print(f"Translate: {word}")
