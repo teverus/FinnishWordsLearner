@@ -6,7 +6,7 @@ SETTINGS_FILE = "settings.ini"
 SETTINGS = "settings"
 
 WHITE_BLOCK_FULL = "\u2588"
-WHITE_BLOCK_UPPER = "\u2580"
+WHITE_BLOCK_UPPER = "\u2501"
 LIGHT_SHADOW = "\u2591"
 DOT = "."
 
