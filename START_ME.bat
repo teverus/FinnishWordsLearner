@@ -5,6 +5,7 @@ title=Welcome to Finnish Learner
 : ==============================
 : Installing virtual environment
 : ==============================
+echo Activating virtual environment. Please stand by...
 set venv_name=venv
 py -m venv %venv_name%
 call %venv_name%\Scripts\activate
