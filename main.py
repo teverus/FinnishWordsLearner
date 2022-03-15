@@ -8,7 +8,7 @@ class FinnishWordsLearner:
     def __init__(self):
         super(FinnishWordsLearner, self).__init__()
 
-        words_per_run = CONFIG[Settings.WORDS_PER_RUN]
+        words_per_run = int(CONFIG[Settings.WORDS_PER_RUN])
 
         create_a_title(WELCOME_MESSAGE)
         user_choice = show_options(
@@ -18,7 +18,7 @@ class FinnishWordsLearner:
 
         options = {1: StartApplication, 2: ChangeSettings, 0: exit}
 
-        options[user_choice]()
+        options[user_choice](words_per_run)
 
 
 if __name__ == "__main__":

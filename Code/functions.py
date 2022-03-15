@@ -18,7 +18,7 @@ def get_stats(df: DataFrame) -> dict:
         stats[Statistics.TIERS][major][minor][Tier.TOTAL] += count
         stats[Statistics.TIERS][major][minor][Tier.LEFT] += count
 
-    a = 1
+    return stats
 
 
 def get_stats_dict() -> dict:

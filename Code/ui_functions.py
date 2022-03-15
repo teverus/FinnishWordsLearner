@@ -1,4 +1,5 @@
 import os
+from typing import Union
 
 from Code.constants import *
 
@@ -7,13 +8,17 @@ def clear_screen():
     os.system("cls")
 
 
-def create_a_title(text: str, upper=True):
+def create_a_title(text: Union[str, list], upper=True):
     clear_screen()
 
     print(f"{'=' * SCREEN_WIDTH}")
 
-    text = text.split("\n") if "\n" in text else text
     text = [text] if not isinstance(text, list) else text
+
+    for index, element in enumerate(text):
+        if "\n" in element:
+            text += element.split("\n")
+            del text[index]
 
     for line in text:
         line = line.upper() if upper else line
@@ -50,22 +55,30 @@ def show_run_statistics(stats: dict):
     total = correct + incorrect
     words_per_run = int(CONFIG[Settings.WORDS_PER_RUN])
 
-    correct_percentage = round(correct / total * 100)
-    incorrect_percentage = round(incorrect / total * 100)
+    try:
+        correct_percentage = round(correct / total * 100)
+    except ZeroDivisionError:
+        correct_percentage = 0
+    try:
+        incorrect_percentage = round(incorrect / total * 100)
+    except ZeroDivisionError:
+        incorrect_percentage = 0
     total_percentage = round(total / words_per_run * 100)
 
-    correct_percentage_half = round(correct_percentage / 2)
-    incorrect_percentage_half = round(incorrect_percentage / 2)
-    total_percentage_half = round(total_percentage / 2)
-    remaining = 50 - total_percentage_half
+    correct_half = round(correct_percentage / 2)
+    incorrect_half = round(incorrect_percentage / 2)
+    total_half = round(total_percentage / 2)
+    remaining_correct = 50 - incorrect_half
+    remaining_incorrect = 50 - correct_half
+    remaining_total = 50 - total_half
 
-    correct_bar = f"{WHITE_BLOCK_UPPER * correct_percentage_half}{DOT * incorrect_percentage_half}"
-    incorrect_bar = f"{WHITE_BLOCK_UPPER * incorrect_percentage_half}{DOT * correct_percentage_half}"
-    total_bar = f"{WHITE_BLOCK_FULL * total_percentage_half}{LIGHT_SHADOW * remaining}"
+    correct_bar = f"{WHITE_BLOCK_UPPER * correct_half}{DOT * remaining_correct}"
+    incorrect_bar = f"{WHITE_BLOCK_UPPER * incorrect_half}{DOT * remaining_incorrect}"
+    total_bar = f"{WHITE_BLOCK_FULL * total_half}{LIGHT_SHADOW * remaining_total}"
 
     print(f"  CORRECT  {correct:02} |{correct_bar}| {correct_percentage:02} %")
     print(f" INCORRECT {incorrect:02} |{incorrect_bar}| {incorrect_percentage:02} %")
-    print(f"   TOTAL   {total:02} |{total_bar}| {total_percentage} %")
+    print(f"  OVERALL  {total:02} |{total_bar}| {total_percentage:02} %")
     create_a_border()
 
 

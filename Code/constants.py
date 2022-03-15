@@ -8,9 +8,9 @@ SETTINGS = "settings"
 WHITE_BLOCK_FULL = "\u2588"
 WHITE_BLOCK_UPPER = "\u2501"
 LIGHT_SHADOW = "\u2591"
-DOT = "."
+DOT = "\u00b7"
 
-USER_TIPS = """If you don't know a word, just hit "Enter"\nEnter "q" or "exit" to exit | Enter "r" or "restart" to restart"""
+USER_TIPS = """To skip a word you don't know, just hit "Enter"\nEnter "q" or "exit" to exit | Enter "r" or "restart" to restart"""
 
 ALL_WORDS = "all_words.xlsx"
 SCORE = "Score"
