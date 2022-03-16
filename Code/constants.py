@@ -10,6 +10,7 @@ WHITE_BLOCK_UPPER = "\u2501"
 LIGHT_SHADOW = "\u2591"
 DOT = "\u00b7"
 
+TITLE = "[ Word {} of {} ]"
 USER_TIPS = """To skip a word you don't know, just hit "Enter"\nEnter "q" or "exit" to exit | Enter "r" or "restart" to restart"""
 
 ALL_WORDS = "all_words.xlsx"

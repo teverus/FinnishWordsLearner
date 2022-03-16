@@ -1,3 +1,5 @@
+import random
+
 from pandas import DataFrame
 
 from Code.constants import *
@@ -54,3 +56,29 @@ def get_stats_dict() -> dict:
         },
         Statistics.CURRENT_TIER: [Tier.BEGINNER, Tier.LOWER],
     }
+
+
+def get_random_word(main) -> None:
+    df = main.snapshot
+
+    current_tier = main.stats[Statistics.CURRENT_TIER]
+    max_score = [_ for _, value in SCORE_TO_TIER.items() if value == current_tier][0]
+
+    if max_score == 0:
+        words_on_this_tier = df.loc[df.Score <= max_score]
+    elif max_score == 15:
+        words_on_this_tier = df.loc[df.Score >= max_score]
+    else:
+        words_on_this_tier = df.loc[df.Score == max_score]
+
+    if len(words_on_this_tier.groupby(SCORE)) != 1:
+        available_groups = list(words_on_this_tier.groupby(SCORE).groups.keys())
+        for group in available_groups:
+            words_on_this_tier = df.loc[df.Score == group]
+            break
+
+    random_number = random.randint(0, len(words_on_this_tier) - 1)
+    random_word = words_on_this_tier.iloc[random_number]
+
+    main.word.finnish = random_word.Finnish
+    main.word.english = random_word.English
