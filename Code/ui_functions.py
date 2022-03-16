@@ -4,27 +4,46 @@ from typing import Union
 from Code.constants import *
 
 
-def clear_screen():
+def do_nothing():
+    pass
+
+
+def clear_console():
     os.system("cls")
 
 
-def create_a_title(text: Union[str, list], upper=True):
-    clear_screen()
+def print_a_message(
+    message: Union[str, list],
+    centered: bool = False,
+    upper: bool = False,
+    clear_screen: bool = False,
+    border: str = "-",
+):
+    clear_console() if clear_screen else do_nothing()
 
-    print(f"{'=' * SCREEN_WIDTH}")
+    print(f"{border * SCREEN_WIDTH}") if border else do_nothing()
 
-    text = [text] if not isinstance(text, list) else text
+    message = [message] if not isinstance(message, list) else message
 
-    for index, element in enumerate(text):
+    for index, element in enumerate(message):
         if "\n" in element:
-            text += element.split("\n")
-            del text[index]
+            del message[index]
+            new_index = index
+            new_elements = element.split("\n")
+            for new_element in new_elements:
+                message.insert(new_index, new_element)
+                new_index += 1
 
-    for line in text:
+    for line in message:
         line = line.upper() if upper else line
-        print(line.center(SCREEN_WIDTH))
+        line = line.center(SCREEN_WIDTH) if centered else line
+        print(line)
 
-    print(f"{'=' * SCREEN_WIDTH}")
+    print(f"{border * SCREEN_WIDTH}") if border else do_nothing()
+
+
+def create_a_title(text: Union[str, list], upper=True):
+    print_a_message(text, centered=True, upper=upper, clear_screen=True, border="=")
 
 
 def create_a_border(symbol: str = "-"):
@@ -122,7 +141,7 @@ def show_translate_prompt(word: str):
     print(f"Translate: {word}")
 
 
-def get_answer() -> str:
+def get_answer(main):
     answer = input(">>> ").strip()
 
     if answer in ["q", "exit"]:
@@ -132,4 +151,4 @@ def get_answer() -> str:
         input("Press enter to restart...")
         return None
     else:
-        return answer.replace("a:", "ä").replace("o:", "ö")
+        main.answer = answer.replace("a:", "ä").replace("o:", "ö")

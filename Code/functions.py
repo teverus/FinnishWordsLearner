@@ -3,6 +3,7 @@ import random
 from pandas import DataFrame
 
 from Code.constants import *
+from Code.ui_functions import print_a_message
 
 
 def get_stats(df: DataFrame) -> dict:
@@ -82,3 +83,13 @@ def get_random_word(main) -> None:
 
     main.word.finnish = random_word.Finnish
     main.word.english = random_word.English
+
+
+def check_answer(main):
+    answer = main.answer
+    expected_answer = main.word.finnish
+
+    if answer == expected_answer:
+        print_a_message("CORRECT :)", centered=True)
+    else:
+        a = 1
