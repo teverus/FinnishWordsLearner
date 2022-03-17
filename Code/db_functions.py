@@ -12,3 +12,14 @@ def get_all_words(target_file: str = ALL_WORDS, sort_by=SCORE) -> DataFrame:
         df.sort_values(by=sort_by, kind="mergesort", inplace=True, ignore_index=True)
 
     return df
+
+
+def update_word_score(main, change: int):
+    df = get_all_words()
+    word = main.word
+
+    df.loc[df.Finnish == word.finnish, SCORE] += change
+
+    df.sort_values(by=SCORE, kind="mergesort", inplace=True, ignore_index=True)
+
+    df.to_excel(ALL_WORDS, index=False)

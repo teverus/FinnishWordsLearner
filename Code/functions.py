@@ -3,6 +3,7 @@ import random
 from pandas import DataFrame
 
 from Code.constants import *
+from Code.db_functions import update_word_score
 from Code.ui_functions import print_a_message
 
 
@@ -91,5 +92,18 @@ def check_answer(main):
 
     if answer == expected_answer:
         print_a_message("CORRECT :)", centered=True)
+        target_stats = Statistics.CORRECT
+        score_delta = 1
     else:
-        a = 1
+        target_stats = Statistics.INCORRECT
+        score_delta = -1
+
+    main.stats[target_stats] += 1
+    update_word_score(main, score_delta)
+    update_current_tier(main)
+
+
+def update_current_tier(main):
+    major, minor = main.stats[Statistics.CURRENT_TIER]
+    tiers = main.stats[Statistics.TIERS]
+    tiers[major][minor][Tier.LEFT] -= 1

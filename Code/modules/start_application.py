@@ -15,9 +15,8 @@ from Code.ui_functions import (
 class StartApplication:
     def __init__(self, words_per_run):
         self.words_per_run = words_per_run
-        self.all_words = get_all_words()
-        self.snapshot = self.all_words.copy()
-        self.stats = get_stats(self.all_words)
+        self.snapshot = get_all_words()
+        self.stats = get_stats(self.snapshot)
         self.word = Word()
         self.answer = None
 
