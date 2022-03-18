@@ -1,9 +1,8 @@
 from Code.Word import Word
 from Code.constants import *
-from Code.db_functions import get_all_words
+from Code.db_functions import get_all_words, update_word_score
 from Code.functions import get_stats, get_random_word, check_answer
 from Code.ui_functions import (
-    create_a_border,
     create_a_title,
     show_run_statistics,
     show_word_tiers,
@@ -35,7 +34,9 @@ class StartApplication:
             show_translate_prompt(self.word.english)
             get_answer(self)
 
-            check_answer(self)
+            score_delta = check_answer(self)
+
+            update_word_score(self, score_delta)
 
             input("""Press "Enter" to continue...""")
 

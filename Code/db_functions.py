@@ -18,7 +18,7 @@ def update_word_score(main, change: int):
     df = get_all_words()
     word = main.word
 
-    df.loc[df.Finnish == word.finnish, SCORE] += change
+    df.loc[(df.Finnish == word.finnish) & (df.English == word.english), SCORE] += change
 
     df.sort_values(by=SCORE, kind="mergesort", inplace=True, ignore_index=True)
 

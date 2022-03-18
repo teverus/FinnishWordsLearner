@@ -87,8 +87,8 @@ def show_run_statistics(stats: dict):
     correct_half = round(correct_percentage / 2)
     incorrect_half = round(incorrect_percentage / 2)
     total_half = round(total_percentage / 2)
-    remaining_correct = 50 - incorrect_half
-    remaining_incorrect = 50 - correct_half
+    remaining_correct = 50 - correct_half
+    remaining_incorrect = 50 - incorrect_half
     remaining_total = 50 - total_half
 
     correct_bar = f"{WHITE_BLOCK_UPPER * correct_half}{DOT * remaining_correct}"

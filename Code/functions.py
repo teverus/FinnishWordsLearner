@@ -3,8 +3,7 @@ import random
 from pandas import DataFrame
 
 from Code.constants import *
-from Code.db_functions import update_word_score
-from Code.ui_functions import print_a_message
+from Code.ui_functions import print_a_message, create_a_border
 
 
 def get_stats(df: DataFrame) -> dict:
@@ -86,24 +85,60 @@ def get_random_word(main) -> None:
     main.word.english = random_word.English
 
 
-def check_answer(main):
+def check_answer(main) -> int:
     answer = main.answer
     expected_answer = main.word.finnish
 
     if answer == expected_answer:
-        print_a_message("CORRECT :)", centered=True)
         target_stats = Statistics.CORRECT
         score_delta = 1
+        print_a_message("CORRECT :)", centered=True)
+
     else:
         target_stats = Statistics.INCORRECT
         score_delta = -1
+        user_answer = f'\n        not "{answer}"' if answer else ''
+        print_a_message(f'''Sorry, it's "{expected_answer}"{user_answer}''')
+        make_user_write_type_three_times(main)
 
     main.stats[target_stats] += 1
-    update_word_score(main, score_delta)
     update_current_tier(main)
+    remove_current_word_from_snapshot(main)
+
+    return score_delta
 
 
 def update_current_tier(main):
     major, minor = main.stats[Statistics.CURRENT_TIER]
     tiers = main.stats[Statistics.TIERS]
     tiers[major][minor][Tier.LEFT] -= 1
+
+
+def make_user_write_type_three_times(main):
+    print(f'Please type "{main.word.finnish}" and hit "Enter" three times.')
+
+    correct_times = 0
+    max_times = 3
+    while correct_times != max_times:
+        user_input = input(">>> ").replace("a:", "ä").replace("o:", "ö")
+        if user_input == main.word.finnish:
+            correct_times += 1
+            if correct_times == max_times:
+                print(f"[SUCCESS] That's it :) Keep on learning :)")
+            else:
+                print(f"[SUCCESS] Yes! {max_times - correct_times} to go!")
+        else:
+            print(f'[FAILURE] Nope, you need to type "{main.word.finnish}".')
+
+    create_a_border()
+
+
+def remove_current_word_from_snapshot(main):
+    df = main.snapshot
+    word = main.word
+    finnish = word.finnish
+    english = word.english
+
+    index = df.loc[(df.Finnish == finnish) & (df.English == english)].index.item()
+
+    df.drop(index, inplace=True)
