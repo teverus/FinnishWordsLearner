@@ -41,6 +41,9 @@ class StartApplication:
 
                 input("""Press "Enter" to continue...""")
 
+            else:
+                return
+
 
 if __name__ == "__main__":
     StartApplication(None)

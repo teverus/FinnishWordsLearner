@@ -141,9 +141,9 @@ def make_user_write_type_three_times(main):
         if user_input == main.word.finnish:
             correct_times += 1
             if correct_times == max_times:
-                print(f"[SUCCESS] That's it :) Keep on learning :)")
+                print(f"[SUCCESS] That's it :) Keep on learning :)\n")
             else:
-                print(f"[SUCCESS] Yes! {max_times - correct_times} to go!\n")
+                print(f"[SUCCESS] Yes! {max_times - correct_times} to go!")
         else:
             print(f'[FAILURE] Nope, you need to type "{main.word.finnish}".')
 
