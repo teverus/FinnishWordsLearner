@@ -1,4 +1,5 @@
 import random
+from typing import Union
 
 from pandas import DataFrame
 
@@ -60,6 +61,14 @@ def get_stats_dict() -> dict:
 
 
 def get_random_word(main) -> None:
+    word = choose_a_word(main)
+
+    while not word:
+        advance_current_tier(main)
+        word = choose_a_word(main)
+
+
+def choose_a_word(main) -> Union[None, False]:
     df = main.snapshot
 
     current_tier = main.stats[Statistics.CURRENT_TIER]
@@ -72,7 +81,10 @@ def get_random_word(main) -> None:
     else:
         words_on_this_tier = df.loc[df.Score == max_score]
 
-    if len(words_on_this_tier.groupby(SCORE)) != 1:
+    if len(words_on_this_tier) == 0:
+        return False
+
+    elif len(words_on_this_tier.groupby(SCORE)) != 1:
         available_groups = list(words_on_this_tier.groupby(SCORE).groups.keys())
         for group in available_groups:
             words_on_this_tier = df.loc[df.Score == group]
@@ -83,6 +95,12 @@ def get_random_word(main) -> None:
 
     main.word.finnish = random_word.Finnish
     main.word.english = random_word.English
+
+
+def advance_current_tier(main):
+    current_tier = main.stats[Statistics.CURRENT_TIER]
+    next_tier = [ALL_TIERS[i + 1] for i, t in enumerate(ALL_TIERS) if t == current_tier]
+    main.stats[Statistics.CURRENT_TIER] = next_tier[0]
 
 
 def check_answer(main) -> int:
@@ -97,8 +115,8 @@ def check_answer(main) -> int:
     else:
         target_stats = Statistics.INCORRECT
         score_delta = -1
-        user_answer = f'\n        not "{answer}"' if answer else ''
-        print_a_message(f'''Sorry, it's "{expected_answer}"{user_answer}''')
+        user_answer = f'\n        not "{answer}"' if answer else ""
+        print_a_message(f"""Sorry, it's "{expected_answer}"{user_answer}""")
         make_user_write_type_three_times(main)
 
     main.stats[target_stats] += 1

@@ -54,6 +54,8 @@ for tier in Tier.ALL_TIERS:
         SCORE_TO_TIER[i] = [tier, level]
         i += 1
 
+ALL_TIERS = list(SCORE_TO_TIER.values())
+
 config = ConfigParser()
 config.read(SETTINGS_FILE)
 
