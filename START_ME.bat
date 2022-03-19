@@ -1,5 +1,5 @@
 @echo off
-mode con: cols=73 lines=35
+mode con: cols=73 lines=40
 title=Welcome to Finnish Learner
 
 : ==============================
@@ -16,3 +16,4 @@ pip install -r requirements.txt 1>nul 2>nul
 : ==============================
 py main.py
 
+timeout -1

@@ -63,12 +63,12 @@ def get_stats_dict() -> dict:
 def get_random_word(main) -> None:
     word = choose_a_word(main)
 
-    while not word:
+    while word is False:
         advance_current_tier(main)
         word = choose_a_word(main)
 
 
-def choose_a_word(main) -> Union[None, False]:
+def choose_a_word(main):
     df = main.snapshot
 
     current_tier = main.stats[Statistics.CURRENT_TIER]
