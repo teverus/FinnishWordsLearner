@@ -25,20 +25,21 @@ class StartApplication:
         for _ in range(1, self.words_per_run + 1):
             get_random_word(self)
 
-            word_title = [TITLE.format(_, self.words_per_run), USER_TIPS]
-            create_a_title(word_title, upper=False)
+            word_title = f"[ Word {_:02} of {self.words_per_run} ]"
+            create_a_title([word_title, USER_TIPS], upper=False)
 
             show_run_statistics(self.stats)
             show_word_tiers(self.stats)
 
             show_translate_prompt(self.word.english)
-            get_answer(self)
+            answer = get_answer(self)
 
-            score_delta = check_answer(self)
+            if answer:
+                score_delta = check_answer(self)
 
-            update_word_score(self, score_delta)
+                update_word_score(self, score_delta)
 
-            input("""Press "Enter" to continue...""")
+                input("""Press "Enter" to continue...""")
 
 
 if __name__ == "__main__":

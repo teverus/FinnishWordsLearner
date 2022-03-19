@@ -95,9 +95,9 @@ def show_run_statistics(stats: dict):
     incorrect_bar = f"{WHITE_BLOCK_UPPER * incorrect_half}{DOT * remaining_incorrect}"
     total_bar = f"{WHITE_BLOCK_FULL * total_half}{LIGHT_SHADOW * remaining_total}"
 
-    print(f"  CORRECT  {correct:02} |{correct_bar}| {correct_percentage:02} %")
-    print(f" INCORRECT {incorrect:02} |{incorrect_bar}| {incorrect_percentage:02} %")
-    print(f"  OVERALL  {total:02} |{total_bar}| {total_percentage:02} %")
+    print(f"   PASS  {correct:02} |{correct_bar}| {correct_percentage:02} %")
+    print(f"   FAIL  {incorrect:02} |{incorrect_bar}| {incorrect_percentage:02} %")
+    print(f"   DONE  {total:02} |{total_bar}| {total_percentage:02} %")
     create_a_border()
 
 
@@ -152,3 +152,4 @@ def get_answer(main):
         return None
     else:
         main.answer = answer.replace("a:", "ä").replace("o:", "ö")
+        return True

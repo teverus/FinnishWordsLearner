@@ -1,10 +1,9 @@
 import random
-from typing import Union
 
 from pandas import DataFrame
 
 from Code.constants import *
-from Code.ui_functions import print_a_message, create_a_border
+from Code.ui_functions import print_a_message
 
 
 def get_stats(df: DataFrame) -> dict:
@@ -144,11 +143,9 @@ def make_user_write_type_three_times(main):
             if correct_times == max_times:
                 print(f"[SUCCESS] That's it :) Keep on learning :)")
             else:
-                print(f"[SUCCESS] Yes! {max_times - correct_times} to go!")
+                print(f"[SUCCESS] Yes! {max_times - correct_times} to go!\n")
         else:
             print(f'[FAILURE] Nope, you need to type "{main.word.finnish}".')
-
-    create_a_border()
 
 
 def remove_current_word_from_snapshot(main):
