@@ -1,5 +1,7 @@
 import os
-from typing import Union
+from typing import Union, List
+
+from tabulate import tabulate
 
 from Code.constants import *
 
@@ -58,6 +60,12 @@ def show_options(options: list, last_is_zero: bool = False) -> int:
         print(f"{index} - {element}")
         available_options.append(str(index))
 
+    user_choice = get_user_choice(available_options)
+
+    return user_choice
+
+
+def get_user_choice(available_options: List[str]) -> int:
     user_choice = input("\nPlease, enter your choice: ")
 
     while user_choice not in available_options:
@@ -153,3 +161,34 @@ def get_answer(main):
     else:
         main.answer = answer.replace("a:", "ä").replace("o:", "ö")
         return True
+
+
+def create_a_settings_table() -> List[str]:
+    headers = ["#", "Name".ljust(50), "Value"]
+    table = [
+        [index, key.capitalize(), value]
+        for index, (key, value) in enumerate(CONFIG.items(), 1)
+    ]
+    table += [[0, "Exit", ""]]
+
+    print(tabulate(table, headers, tablefmt="orgtbl"))
+    create_a_border()
+
+    return [str(element[0]) for element in table]
+
+
+def create_a_table(headers, options, values=None):
+    if values:
+        table = [
+            [index, key.capitalize(), value]
+            for index, (key, value) in enumerate(zip(options, values), 1)
+        ]
+    else:
+        table = [[i, option.capitalize()] for i, option in enumerate(options, 1)]
+
+    table += [[0, "Exit", ""]]
+
+    print(tabulate(table, headers, tablefmt="orgtbl"))
+    create_a_border()
+
+    return [str(element[0]) for element in table]
