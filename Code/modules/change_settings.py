@@ -7,17 +7,17 @@ from Code.ui_functions import (
 
 
 class ChangeSettings:
-    def __init__(self, words_per_run):
-        self.words_per_run = words_per_run
-        self.settings = {key: value for key, value in CONFIG.items()}
+    def __init__(self, _):
         self.run()
 
-    def run(self):
+    @staticmethod
+    def run():
         create_a_title("Settings")
         available_options = create_a_table(
             headers=["#", "Name".ljust(50), "Value"],
             options=list(CONFIG.keys()),
-            values=list(CONFIG.values())
+            values=list(CONFIG.values()),
+            go_back=True
         )
         user_choice = get_user_choice(available_options)
         a = 1

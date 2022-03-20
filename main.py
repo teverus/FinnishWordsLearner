@@ -30,7 +30,7 @@ class FinnishWordsLearner:
         options = {1: StartApplication, 2: ChangeSettings, 0: exit}
 
         while True:
-            options[user_choice](words_per_run)
+            options[int(user_choice)](words_per_run)
 
 
 if __name__ == "__main__":

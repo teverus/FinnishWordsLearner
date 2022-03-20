@@ -73,7 +73,7 @@ def get_user_choice(available_options: List[str]) -> int:
         print(f"[WARNING] You must enter one of these values: {guidelines}")
         user_choice = input("\nPlease, enter your choice: ")
 
-    return int(user_choice)
+    return user_choice
 
 
 def show_run_statistics(stats: dict):
@@ -177,7 +177,7 @@ def create_a_settings_table() -> List[str]:
     return [str(element[0]) for element in table]
 
 
-def create_a_table(headers, options, values=None):
+def create_a_table(headers, options, values=None, go_back=False, show_exit=True):
     if values:
         table = [
             [index, key.capitalize(), value]
@@ -186,7 +186,11 @@ def create_a_table(headers, options, values=None):
     else:
         table = [[i, option.capitalize()] for i, option in enumerate(options, 1)]
 
-    table += [[0, "Exit", ""]]
+    if show_exit:
+        table += [[0, "Exit", ""]]
+
+    if go_back:
+        table += [["00", "Go back", ""]]
 
     print(tabulate(table, headers, tablefmt="orgtbl"))
     create_a_border()
