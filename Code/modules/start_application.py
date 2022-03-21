@@ -19,6 +19,7 @@ class StartApplication:
         self.word = Word()
         self.answer = None
 
+        self.result = None
         self.run()
 
     def run(self):
@@ -42,6 +43,7 @@ class StartApplication:
                 input("""Press "Enter" to continue...""")
 
             else:
+                self.result = Modules.START_THE_APPLICATION
                 return
 
 

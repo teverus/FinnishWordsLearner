@@ -65,7 +65,7 @@ def show_options(options: list, last_is_zero: bool = False) -> int:
     return user_choice
 
 
-def get_user_choice(available_options: List[str]) -> int:
+def get_user_choice(available_options: List[str]) -> str:
     user_choice = input("\nPlease, enter your choice: ")
 
     while user_choice not in available_options:
@@ -187,7 +187,7 @@ def create_a_table(headers, options, values=None, go_back=False, show_exit=True)
         table = [[i, option.capitalize()] for i, option in enumerate(options, 1)]
 
     if show_exit:
-        table += [[0, "Exit", ""]]
+        table += [[0, "Exit the application", ""]]
 
     if go_back:
         table += [["00", "Go back", ""]]

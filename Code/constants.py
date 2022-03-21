@@ -47,6 +47,11 @@ class Tier:
     LEFT = "Left"
 
 
+class Modules:
+    SHOW_WELCOME_SCREEN = "00"
+    START_THE_APPLICATION = "1"
+
+
 SCORE_TO_TIER = {}
 i = 0
 for tier in Tier.ALL_TIERS:
@@ -59,4 +64,5 @@ ALL_TIERS = list(SCORE_TO_TIER.values())
 config = ConfigParser()
 config.read(SETTINGS_FILE)
 
+CONFIG_PARSER = config
 CONFIG = config[SETTINGS]
