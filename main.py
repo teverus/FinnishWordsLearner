@@ -23,6 +23,7 @@ class FinnishWordsLearner:
         choice = self.show_welcome_screen()
 
         while True:
+            self.words_per_run = int(CONFIG[Settings.WORDS_PER_RUN])
             choice = self.options[choice]() if choice in ["0", "00"] else choice
 
             module = self.options[choice](self.words_per_run)

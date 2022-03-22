@@ -46,6 +46,13 @@ class StartApplication:
                 self.result = Modules.START_THE_APPLICATION
                 return
 
+        self.show_results()
+
+    def show_results(self):
+        create_a_title("Your results")
+        show_run_statistics(self.stats)
+        a = 1
+
 
 if __name__ == "__main__":
     StartApplication(None)

@@ -1,4 +1,5 @@
 from Code.constants import *
+from Code.db_functions import get_all_words
 from Code.ui_functions import (
     create_a_title,
     get_user_choice,
@@ -22,6 +23,7 @@ class ChangeSettings:
         )
         options = {
             "1": self.change_setting,
+            "2": self.reset_scores
         }
 
         while True:
@@ -48,6 +50,14 @@ class ChangeSettings:
         print_a_message(
             f'New value for "{setting.capitalize()}" was saved', centered=True
         )
+
+    @staticmethod
+    def reset_scores(_):
+        df = get_all_words()
+        df.loc[:, SCORE] = 0
+        df.to_excel(ALL_WORDS, index=False)
+
+        print_a_message("Scores were set to 0", centered=True)
 
 
 if __name__ == "__main__":
