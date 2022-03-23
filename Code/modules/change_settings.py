@@ -31,7 +31,7 @@ class ChangeSettings:
             if user_choice == "0":
                 exit()
             elif user_choice == "00":
-                self.result = Modules.SHOW_WELCOME_SCREEN
+                self.result = ExitCodes.SHOW_WELCOME_SCREEN
                 return
             else:
                 options[user_choice](user_choice)

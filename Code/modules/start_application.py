@@ -8,6 +8,8 @@ from Code.ui_functions import (
     show_word_tiers,
     show_translate_prompt,
     get_answer,
+    create_a_table,
+    show_options,
 )
 
 
@@ -18,6 +20,7 @@ class StartApplication:
         self.stats = get_stats(self.snapshot)
         self.word = Word()
         self.answer = None
+        self.incorrect_answers = {}
 
         self.result = None
         self.run()
@@ -26,7 +29,7 @@ class StartApplication:
         for _ in range(1, self.words_per_run + 1):
             get_random_word(self)
 
-            word_title = f"[ Word {_:02} of {self.words_per_run} ]"
+            word_title = f"[ Word {_} of {self.words_per_run} ]"
             create_a_title([word_title, USER_TIPS], upper=False)
 
             show_run_statistics(self.stats)
@@ -43,15 +46,35 @@ class StartApplication:
                 input("""Press "Enter" to continue...""")
 
             else:
-                self.result = Modules.START_THE_APPLICATION
+                self.result = ExitCodes.START_THE_APPLICATION
                 return
 
         self.show_results()
 
+        user_choice = show_options(
+            title="What would you like to do next?",
+            options=["Practice more", "Exit"],
+            last_is_zero=True,
+        )
+
+        if user_choice == "0":
+            exit()
+        else:
+            self.result = ExitCodes.START_THE_APPLICATION
+            return
+
     def show_results(self):
         create_a_title("Your results")
         show_run_statistics(self.stats)
-        a = 1
+        if self.incorrect_answers:
+            create_a_table(
+                headers=["#", "Correct word".center(27), "Incorrect word".center(28)],
+                options=list(self.incorrect_answers.keys()),
+                values=list(self.incorrect_answers.values()),
+                show_exit=False,
+                capitalize=False,
+                bottom_border="=",
+            )
 
 
 if __name__ == "__main__":

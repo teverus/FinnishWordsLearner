@@ -47,7 +47,7 @@ class Tier:
     LEFT = "Left"
 
 
-class Modules:
+class ExitCodes:
     SHOW_WELCOME_SCREEN = "00"
     START_THE_APPLICATION = "1"
 

@@ -52,8 +52,11 @@ def create_a_border(symbol: str = "-"):
     print(f"{symbol * SCREEN_WIDTH}")
 
 
-def show_options(options: list, last_is_zero: bool = False) -> int:
+def show_options(options: list, title: str = None, last_is_zero: bool = False) -> int:
     available_options = []
+
+    if title:
+        print(title)
 
     for index, element in enumerate(options, 1):
         index = 0 if last_is_zero and index == len(options) else index
@@ -177,14 +180,25 @@ def create_a_settings_table() -> List[str]:
     return [str(element[0]) for element in table]
 
 
-def create_a_table(headers, options, values=None, go_back=False, show_exit=True):
+def create_a_table(
+    headers: list,
+    options: list,
+    values: list = None,
+    go_back: bool = False,
+    show_exit: bool = True,
+    capitalize: bool = True,
+    bottom_border: str = "-"
+) -> List[str]:
     if values:
         table = [
-            [index, key.capitalize(), value]
+            [index, key.capitalize() if capitalize else key, value]
             for index, (key, value) in enumerate(zip(options, values), 1)
         ]
     else:
-        table = [[i, option.capitalize()] for i, option in enumerate(options, 1)]
+        table = [
+            [i, option.capitalize() if capitalize else option]
+            for i, option in enumerate(options, 1)
+        ]
 
     if show_exit:
         table += [[0, "Exit the application", ""]]
@@ -193,6 +207,6 @@ def create_a_table(headers, options, values=None, go_back=False, show_exit=True)
         table += [["00", "Go back", ""]]
 
     print(tabulate(table, headers, tablefmt="orgtbl"))
-    create_a_border()
+    create_a_border(bottom_border)
 
     return [str(element[0]) for element in table]

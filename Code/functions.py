@@ -109,13 +109,17 @@ def check_answer(main) -> int:
     if answer == expected_answer:
         target_stats = Statistics.CORRECT
         score_delta = 1
+
         print_a_message("CORRECT :)", centered=True)
 
     else:
+        main.incorrect_answers[expected_answer] = answer
         target_stats = Statistics.INCORRECT
         score_delta = -1
+
         user_answer = f'\n        not "{answer}"' if answer else ""
         print_a_message(f"""Sorry, it's "{expected_answer}"{user_answer}""")
+
         make_user_write_type_three_times(main)
 
     main.stats[target_stats] += 1
