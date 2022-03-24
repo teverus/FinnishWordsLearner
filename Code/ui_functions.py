@@ -165,6 +165,7 @@ def get_answer(main):
 
     if answer in ["q", "exit"]:
         input("Press enter to exit...")
+        # TODO тут нужно переходить на экран результатов
         exit()
     elif answer in ["r", "restart"]:
         input("Press enter to restart...")
@@ -195,7 +196,7 @@ def create_a_table(
     go_back: bool = False,
     show_exit: bool = True,
     capitalize: bool = True,
-    bottom_border: str = "-"
+    bottom_border: str = "-",
 ) -> List[str]:
     if values:
         table = [
@@ -214,7 +215,13 @@ def create_a_table(
     if go_back:
         table += [["00", "Go back", ""]]
 
-    print(tabulate(table, headers, tablefmt="orgtbl"))
+    print(tabulate(table, headers, tablefmt="presto"))
     create_a_border(bottom_border)
 
     return [str(element[0]) for element in table]
+
+
+def create_a_table_v2(headers: list, rows: list, bottom_border: str = "-"):
+    table = [[index] + row for index, row in enumerate(rows, 1)]
+    print(tabulate(table, headers, tablefmt="presto"))
+    create_a_border(bottom_border)

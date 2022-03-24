@@ -8,8 +8,8 @@ from Code.ui_functions import (
     show_word_tiers,
     show_translate_prompt,
     get_answer,
-    create_a_table,
     show_options,
+    create_a_table_v2,
 )
 
 
@@ -23,20 +23,21 @@ class StartApplication:
         self.incorrect_answers = {}
 
         self.result = None
+        self.index = None
         self.run()
 
     def run(self):
-        for _ in range(1, self.words_per_run + 1):
+        for index in range(1, self.words_per_run + 1):
+            self.index = index
             get_random_word(self)
 
-            word_title = f"[ Word {_} of {self.words_per_run} ]"
+            word_title = f"[ Word {index} of {self.words_per_run} ]"
             create_a_title([word_title, USER_TIPS], upper=False)
 
             show_run_statistics(self.stats)
             # TODO таблички Total, left
             show_word_tiers(self.stats)
 
-            # TODO сохранять английское слово, чтобы потом его использовать в табличке
             show_translate_prompt(self.word.english)
             answer = get_answer(self)
 
@@ -69,13 +70,19 @@ class StartApplication:
         create_a_title("Your results")
         show_run_statistics(self.stats)
         if self.incorrect_answers:
-            create_a_table(
-                headers=["#", "Correct word".center(26), "Incorrect word".center(26)],
-                options=list(self.incorrect_answers.keys()),
-                values=list(self.incorrect_answers.values()),
-                show_exit=False,
-                capitalize=False,
-                bottom_border="=",
+            incorrect_answers = [
+                list(self.incorrect_answers[1].values())
+                for _, value in self.incorrect_answers.items()
+            ]
+            create_a_table_v2(
+                headers=[
+                    "#",
+                    "English".center(17),
+                    "Correct".center(16),
+                    "Incorrect".center(16),
+                ],
+                rows=incorrect_answers,
+                bottom_border="="
             )
 
 

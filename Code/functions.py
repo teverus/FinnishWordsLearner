@@ -113,7 +113,9 @@ def check_answer(main) -> int:
         print_a_message("CORRECT :)", centered=True, border="=")
 
     else:
-        main.incorrect_answers[expected_answer] = answer
+        main.incorrect_answers[main.index] = {Word.ENGLISH: main.word.english}
+        main.incorrect_answers[main.index][Word.FINNISH] = expected_answer
+        main.incorrect_answers[main.index][Word.INCORRECT] = answer
         target_stats = Statistics.INCORRECT
         score_delta = -1
 

@@ -53,6 +53,12 @@ class ExitCodes:
     START_THE_APPLICATION = "1"
 
 
+class Word:
+    ENGLISH = "English"
+    FINNISH = "Finnish"
+    INCORRECT = "Incorrect"
+
+
 SCORE_TO_TIER = {}
 i = 0
 for tier in Tier.ALL_TIERS:

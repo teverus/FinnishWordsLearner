@@ -33,7 +33,7 @@ class FinnishWordsLearner:
         create_a_title(WELCOME_MESSAGE)
 
         available_options = create_a_table(
-            headers=["#", "Option".ljust(57)],
+            headers=["#", "Option".ljust(59)],
             options=[f"Start (practice {self.words_per_run} words)", "Settings"],
         )
 

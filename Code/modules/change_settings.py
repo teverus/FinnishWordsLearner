@@ -16,7 +16,7 @@ class ChangeSettings:
     def run(self):
         create_a_title("Settings")
         available_options = create_a_table(
-            headers=["#", "Name".ljust(47), "Value"],
+            headers=["#", "Name".ljust(49), "Value"],
             options=list(CONFIG.keys()),
             values=list(CONFIG.values()),
             go_back=True,
