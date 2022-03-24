@@ -16,15 +16,12 @@ class ChangeSettings:
     def run(self):
         create_a_title("Settings")
         available_options = create_a_table(
-            headers=["#", "Name".ljust(50), "Value"],
+            headers=["#", "Name".ljust(47), "Value"],
             options=list(CONFIG.keys()),
             values=list(CONFIG.values()),
             go_back=True,
         )
-        options = {
-            "1": self.change_setting,
-            "2": self.reset_scores
-        }
+        options = {"1": self.change_setting, "2": self.reset_scores}
 
         while True:
             user_choice = get_user_choice(available_options)
@@ -48,7 +45,9 @@ class ChangeSettings:
         CONFIG[setting] = new_value
 
         print_a_message(
-            f'New value for "{setting.capitalize()}" was saved', centered=True
+            f'New value for "{setting.capitalize()}" has been saved',
+            centered=True,
+            border="=",
         )
 
     @staticmethod

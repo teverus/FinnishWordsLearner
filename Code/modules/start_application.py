@@ -33,8 +33,10 @@ class StartApplication:
             create_a_title([word_title, USER_TIPS], upper=False)
 
             show_run_statistics(self.stats)
+            # TODO таблички Total, left
             show_word_tiers(self.stats)
 
+            # TODO сохранять английское слово, чтобы потом его использовать в табличке
             show_translate_prompt(self.word.english)
             answer = get_answer(self)
 
@@ -52,7 +54,7 @@ class StartApplication:
         self.show_results()
 
         user_choice = show_options(
-            title="What would you like to do next?",
+            title="\nWhat would you like to do next?",
             options=["Practice more", "Exit"],
             last_is_zero=True,
         )
@@ -68,7 +70,7 @@ class StartApplication:
         show_run_statistics(self.stats)
         if self.incorrect_answers:
             create_a_table(
-                headers=["#", "Correct word".center(27), "Incorrect word".center(28)],
+                headers=["#", "Correct word".center(26), "Incorrect word".center(26)],
                 options=list(self.incorrect_answers.keys()),
                 values=list(self.incorrect_answers.values()),
                 show_exit=False,

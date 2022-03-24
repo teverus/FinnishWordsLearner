@@ -106,9 +106,17 @@ def show_run_statistics(stats: dict):
     incorrect_bar = f"{WHITE_BLOCK_UPPER * incorrect_half}{DOT * remaining_incorrect}"
     total_bar = f"{WHITE_BLOCK_FULL * total_half}{LIGHT_SHADOW * remaining_total}"
 
-    print(f"   PASS  {correct:02} |{correct_bar}| {correct_percentage:02} %")
-    print(f"   FAIL  {incorrect:02} |{incorrect_bar}| {incorrect_percentage:02} %")
-    print(f"   DONE  {total:02} |{total_bar}| {total_percentage:02} %")
+    correct = str(correct).rjust(2, "0").rjust(3)
+    incorrect = str(incorrect).rjust(2, "0").rjust(3)
+    total = str(total).rjust(2, "0").rjust(3)
+
+    correct_percentage = str(correct_percentage).rjust(2, "0").rjust(3)
+    incorrect_percentage = str(incorrect_percentage).rjust(2, "0").rjust(3)
+    total_percentage = str(total_percentage).rjust(2, "0").rjust(3)
+
+    print(f" PASS {correct} |{correct_bar}| {correct_percentage} %")
+    print(f" FAIL {incorrect} |{incorrect_bar}| {incorrect_percentage} %")
+    print(f" DONE {total} |{total_bar}| {total_percentage} %")
     create_a_border()
 
 

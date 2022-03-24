@@ -1,6 +1,6 @@
 from configparser import ConfigParser
 
-SCREEN_WIDTH = 72
+SCREEN_WIDTH = 69
 WELCOME_MESSAGE = "Welcome to Finnish Learner"
 SETTINGS_FILE = "settings.ini"
 SETTINGS = "settings"
@@ -11,7 +11,8 @@ LIGHT_SHADOW = "\u2591"
 DOT = "\u00b7"
 
 TITLE = "[ Word {} of {} ]"
-USER_TIPS = """To skip a word you don't know, press "Enter"\nEnter "q"/"exit" to exit or Enter "r"/"restart" to restart"""
+USER_TIPS = """If you can't remember a specific word, just press "Enter"
+a: -> ä | o: -> ö | q or exit -> exit | r or restart -> restart"""
 
 ALL_WORDS = "all_words.xlsx"
 SCORE = "Score"
