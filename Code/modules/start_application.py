@@ -35,7 +35,6 @@ class StartApplication:
             create_a_title([word_title, USER_TIPS], upper=False)
 
             show_run_statistics(self.stats)
-            # TODO таблички Total, left
             show_word_tiers(self.stats)
 
             show_translate_prompt(self.word.english)

@@ -131,33 +131,40 @@ def get_longest_total_number(stats: dict) -> int:
 
 def show_word_tiers(stats: dict):
     ____ = "".center(Tier.MAX_LENGTH)
-    max_total = get_longest_total_number(stats)
+    # max_total = get_longest_total_number(stats)
+    max_total = Tier.MAX_LENGTH + 2
     current_tick = stats[Statistics.CURRENT_TIER]
 
-    for key, value in stats[Statistics.TIERS].items():
+    print(f" {''.center(Tier.MAX_LENGTH)} | | {'Total'.center(20)} | {'Remaining'.center(20)}")
+    print("--------------------+-+----------------------+-----------------------")
+
+    for index, (key, value) in enumerate(stats[Statistics.TIERS].items(), 1):
         name = key.center(Tier.MAX_LENGTH)
 
-        total_low = f"{value[Tier.LOWER][Tier.TOTAL]}".ljust(max_total)
-        total_mid = f"{value[Tier.MIDDLE][Tier.TOTAL]}".ljust(max_total)
-        total_top = f"{value[Tier.UPPER][Tier.TOTAL]}".ljust(max_total)
+        total_low = f"{value[Tier.LOWER][Tier.TOTAL]}".center(max_total)
+        total_mid = f"{value[Tier.MIDDLE][Tier.TOTAL]}".center(max_total)
+        total_top = f"{value[Tier.UPPER][Tier.TOTAL]}".center(max_total)
 
-        left_low = f"{value[Tier.LOWER][Tier.LEFT]}".ljust(max_total)
-        left_mid = f"{value[Tier.MIDDLE][Tier.LEFT]}".ljust(max_total)
-        left_top = f"{value[Tier.UPPER][Tier.LEFT]}".ljust(max_total)
+        left_low = f"{value[Tier.LOWER][Tier.LEFT]}".center(max_total)
+        left_mid = f"{value[Tier.MIDDLE][Tier.LEFT]}".center(max_total)
+        left_top = f"{value[Tier.UPPER][Tier.LEFT]}".center(max_total)
 
         tick_low = WHITE_BLOCK_FULL if current_tick == [key, Tier.LOWER] else " "
         tick_mid = WHITE_BLOCK_FULL if current_tick == [key, Tier.MIDDLE] else " "
         tick_top = WHITE_BLOCK_FULL if current_tick == [key, Tier.UPPER] else " "
 
-        print(f" {____} |{tick_low}| Total: {total_low}| Left this run: {left_low}")
-        print(f" {name} |{tick_mid}| Total: {total_mid}| Left this run: {left_mid}")
-        print(f" {____} |{tick_top}| Total: {total_top}| Left this run: {left_top}")
+        print(f" {____} |{tick_low}| {total_low} | {left_low}")
+        print(f" {name} |{tick_mid}| {total_mid} | {left_mid}")
+        print(f" {____} |{tick_top}| {total_top} | {left_top}")
 
-        create_a_border()
+        if index != len(stats[Statistics.TIERS]):
+            print("--------------------+-+----------------------+-----------------------")
+        else:
+            create_a_border("=")
 
 
 def show_translate_prompt(word: str):
-    print(f"Translate: {word}")
+    print(f"\nTranslate: {word}")
 
 
 def get_answer(main):
