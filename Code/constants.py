@@ -12,7 +12,7 @@ DOT = "\u00b7"
 
 TITLE = "[ Word {} of {} ]"
 USER_TIPS = """If you can't remember a specific word, just press "Enter"
-a: -> ä | o: -> ö | q or exit -> exit | r or restart -> restart"""
+a: -> ä | o: -> ö | q or exit -> to menu | r or restart -> restart"""
 
 ALL_WORDS = "all_words.xlsx"
 SCORE = "Score"

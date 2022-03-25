@@ -48,7 +48,10 @@ class StartApplication:
                 input("""Press "Enter" to continue...""")
 
             else:
-                self.result = ExitCodes.START_THE_APPLICATION
+                if answer is None:
+                    self.result = ExitCodes.START_THE_APPLICATION
+                else:
+                    self.result = ExitCodes.SHOW_WELCOME_SCREEN
                 return
 
         self.show_results()
@@ -70,8 +73,8 @@ class StartApplication:
         show_run_statistics(self.stats)
         if self.incorrect_answers:
             incorrect_answers = [
-                list(self.incorrect_answers[1].values())
-                for _, value in self.incorrect_answers.items()
+                list(self.incorrect_answers[key].values())
+                for key, value in self.incorrect_answers.items()
             ]
             create_a_table_v2(
                 headers=[

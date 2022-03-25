@@ -172,8 +172,7 @@ def get_answer(main):
 
     if answer in ["q", "exit"]:
         input("Press enter to exit...")
-        # TODO тут нужно переходить на экран результатов
-        exit()
+        return False
     elif answer in ["r", "restart"]:
         input("Press enter to restart...")
         return None
