@@ -44,6 +44,7 @@ class ChangeSettings:
 
         CONFIG[setting] = new_value
 
+        print(" ")
         print_a_message(
             f'New value for "{setting.capitalize()}" has been saved',
             centered=True,

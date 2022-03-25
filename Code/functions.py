@@ -110,6 +110,7 @@ def check_answer(main) -> int:
         target_stats = Statistics.CORRECT
         score_delta = 1
 
+        print(" ")
         print_a_message("CORRECT :)", centered=True, border="=")
 
     else:

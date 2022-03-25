@@ -1,3 +1,5 @@
+import os
+
 from Code.Word import Word
 from Code.constants import *
 from Code.db_functions import get_all_words, update_word_score
@@ -9,7 +11,7 @@ from Code.ui_functions import (
     show_translate_prompt,
     get_answer,
     show_options,
-    create_a_table_v2,
+    create_a_table_v2, create_a_border,
 )
 
 
@@ -31,8 +33,15 @@ class StartApplication:
             self.index = index
             get_random_word(self)
 
-            word_title = f"[ Word {index} of {self.words_per_run} ]"
-            create_a_title([word_title, USER_TIPS], upper=False)
+            os.system("cls")
+            create_a_border("=")
+            current_statistics = f"Word {index} of {self.words_per_run:02}".center(20)
+            word_title = f"                      | {current_statistics} |"
+            print(word_title)
+            print(USER_TIPS.center(SCREEN_WIDTH))
+            print(TRANSFORMATION.center(SCREEN_WIDTH))
+            create_a_border("=")
+            # create_a_title([word_title, USER_TIPS], upper=False)
 
             show_run_statistics(self.stats)
             show_word_tiers(self.stats)
