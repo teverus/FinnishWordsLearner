@@ -170,12 +170,14 @@ def show_translate_prompt(word: str):
 def get_answer(main):
     answer = input(">>> ").strip()
 
-    if answer in ["q", "exit"]:
+    if answer == "w":
         input("Press enter to exit...")
         return False
-    elif answer in ["r", "restart"]:
+    elif answer == "r":
         input("Press enter to restart...")
         return None
+    elif answer == "q":
+        exit()
     else:
         main.answer = answer.replace("a:", "ä").replace("o:", "ö")
         return True

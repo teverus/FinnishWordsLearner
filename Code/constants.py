@@ -12,7 +12,7 @@ DOT = "\u00b7"
 
 TITLE = "[ Word {} of {} ]"
 USER_TIPS = """If you can't remember a specific word, just press "Enter" key"""
-TRANSFORMATION = """a: -> ä | o: -> ö | m -> go back to menu | r -> restart | q -> exit"""
+TRANSFORMATION = """a: -> ä | o: -> ö | w -> go back to menu | r -> restart | q -> exit"""
 
 
 ALL_WORDS = "all_words.xlsx"

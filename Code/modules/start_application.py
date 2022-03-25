@@ -35,9 +35,10 @@ class StartApplication:
 
             os.system("cls")
             create_a_border("=")
-            current_statistics = f"Word {index} of {self.words_per_run:02}".center(20)
+            current_statistics = f"WORD {index:02} OF {self.words_per_run}".center(20)
             word_title = f"                      | {current_statistics} |"
             print(word_title)
+            create_a_border()
             print(USER_TIPS.center(SCREEN_WIDTH))
             print(TRANSFORMATION.center(SCREEN_WIDTH))
             create_a_border("=")
