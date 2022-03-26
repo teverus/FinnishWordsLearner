@@ -1,4 +1,4 @@
-from Code.constants import *
+from Code.constants import CONFIG, Settings, WELCOME_MESSAGE
 from Code.modules.change_settings import ChangeSettings
 from Code.modules.start_application import StartApplication
 from Code.ui_functions import (
@@ -13,6 +13,7 @@ class FinnishWordsLearner:
         super(FinnishWordsLearner, self).__init__()
 
         self.words_per_run = int(CONFIG[Settings.WORDS_PER_RUN])
+
         self.options = {
             "1": StartApplication,
             "2": ChangeSettings,
@@ -33,8 +34,8 @@ class FinnishWordsLearner:
         create_a_title(WELCOME_MESSAGE)
 
         available_options = create_a_table(
-            headers=["#", "Option".ljust(59)],
-            options=[f"Start (practice {self.words_per_run} words)", "Settings"],
+            headers=["#", "Option"],
+            rows=[f"Start (practice {self.words_per_run} words)", "Settings"],
         )
 
         user_choice = get_user_choice(available_options)

@@ -1,5 +1,3 @@
-import os
-
 from Code.Word import Word
 from Code.constants import *
 from Code.db_functions import get_all_words, update_word_score
@@ -11,7 +9,7 @@ from Code.ui_functions import (
     show_translate_prompt,
     get_answer,
     show_options,
-    create_a_table_v2, create_a_border, show_title_head,
+    create_a_table, show_title_head,
 )
 
 
@@ -76,7 +74,7 @@ class StartApplication:
                 list(self.incorrect_answers[key].values())
                 for key, value in self.incorrect_answers.items()
             ]
-            create_a_table_v2(
+            create_a_table(
                 headers=[
                     "#",
                     "English".center(17).upper(),

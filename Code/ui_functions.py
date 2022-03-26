@@ -211,25 +211,31 @@ def create_a_settings_table() -> List[str]:
     return [str(element[0]) for element in table]
 
 
+# TODO show index и прочее
 def create_a_table(
     headers: list,
-    options: list,
-    values: list = None,
-    go_back: bool = False,
+    rows: list,
+    bottom_border: str = "=",
+    center: bool = False,
     show_exit: bool = True,
-    capitalize: bool = True,
-    bottom_border: str = "-",
+    go_back: bool = False,
 ) -> List[str]:
-    if values:
-        table = [
-            [index, key.capitalize() if capitalize else key, value]
-            for index, (key, value) in enumerate(zip(options, values), 1)
-        ]
-    else:
-        table = [
-            [i, option.capitalize() if capitalize else option]
-            for i, option in enumerate(options, 1)
-        ]
+    status = "center" if center else "default"
+
+    no_index = headers[1:]
+
+    separators = (len(headers) + 1)
+    padding = (len(headers) * 2)
+    default_padding = (len(headers[1:]) * 3)
+    full_width = SCREEN_WIDTH - separators - padding - default_padding
+
+    if len(no_index) == 1:
+        headers[1] = headers[1].ljust(full_width)
+
+    table = [
+        [index] + row if isinstance(row, list) else [index, row]
+        for index, row in enumerate(rows, 1)
+    ]
 
     if show_exit:
         table += [[0, "Exit the application", ""]]
@@ -237,16 +243,7 @@ def create_a_table(
     if go_back:
         table += [["00", "Go back", ""]]
 
-    print(tabulate(table, headers, tablefmt="presto"))
+    print(tabulate(table, headers, tablefmt="presto", stralign=status))
     create_a_border(bottom_border)
 
     return [str(element[0]) for element in table]
-
-
-def create_a_table_v2(
-    headers: list, rows: list, bottom_border: str = "-", center=False
-):
-    stralign = "center" if center else "default"
-    table = [[index] + row for index, row in enumerate(rows, 1)]
-    print(tabulate(table, headers, tablefmt="presto", stralign=stralign))
-    create_a_border(bottom_border)

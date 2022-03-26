@@ -3,8 +3,7 @@ from Code.db_functions import get_all_words
 from Code.ui_functions import (
     create_a_title,
     get_user_choice,
-    create_a_table,
-    print_a_message,
+    print_a_message, create_a_table,
 )
 
 
@@ -17,10 +16,10 @@ class ChangeSettings:
         create_a_title("Settings")
         available_options = create_a_table(
             headers=["#", "Name".ljust(49), "Value"],
-            options=list(CONFIG.keys()),
-            values=list(CONFIG.values()),
+            rows=[[key, value] for key, value in CONFIG.items()],
             go_back=True,
         )
+
         options = {"1": self.change_setting, "2": self.reset_scores}
 
         while True:
