@@ -11,7 +11,7 @@ from Code.ui_functions import (
     show_translate_prompt,
     get_answer,
     show_options,
-    create_a_table_v2, create_a_border,
+    create_a_table_v2, create_a_border, show_title_head,
 )
 
 
@@ -33,17 +33,7 @@ class StartApplication:
             self.index = index
             get_random_word(self)
 
-            os.system("cls")
-            create_a_border("=")
-            current_statistics = f"WORD {index:02} OF {self.words_per_run}".center(20)
-            word_title = f"                      | {current_statistics} |"
-            print(word_title)
-            create_a_border()
-            print(USER_TIPS.center(SCREEN_WIDTH))
-            print(TRANSFORMATION.center(SCREEN_WIDTH))
-            create_a_border("=")
-            # create_a_title([word_title, USER_TIPS], upper=False)
-
+            show_title_head(self)
             show_run_statistics(self.stats)
             show_word_tiers(self.stats)
 
@@ -55,7 +45,7 @@ class StartApplication:
 
                 update_word_score(self, score_delta)
 
-                input("""Press "Enter" to continue...""")
+                input("""\nPress "Enter" to continue...""")
 
             else:
                 if answer is None:
@@ -89,12 +79,13 @@ class StartApplication:
             create_a_table_v2(
                 headers=[
                     "#",
-                    "English".center(17),
-                    "Correct".center(16),
-                    "Incorrect".center(16),
+                    "English".center(17).upper(),
+                    "Correct".center(16).upper(),
+                    "Incorrect".center(16).upper(),
                 ],
                 rows=incorrect_answers,
-                bottom_border="="
+                bottom_border="=",
+                center=True
             )
 
 

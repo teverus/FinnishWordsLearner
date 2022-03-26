@@ -129,14 +129,28 @@ def get_longest_total_number(stats: dict) -> int:
     return len(str(max(max_number))) + 1
 
 
+def show_title_head(self):
+    os.system("cls")
+    create_a_border("=")
+    current_statistics = f"WORD {self.index:02} OF {self.words_per_run}".center(20)
+    word_title = f"                      | {current_statistics} |"
+    print(word_title)
+    create_a_border()
+    print(USER_TIPS.center(SCREEN_WIDTH))
+    print(TRANSFORMATION.center(SCREEN_WIDTH))
+    create_a_border("=")
+
+
 def show_word_tiers(stats: dict):
     ____ = "".center(Tier.MAX_LENGTH)
     # max_total = get_longest_total_number(stats)
     max_total = Tier.MAX_LENGTH + 2
     current_tick = stats[Statistics.CURRENT_TIER]
 
-    print(f" {''.center(Tier.MAX_LENGTH)} | | {'Total'.center(20)} | {'Remaining'.center(20)}")
-    print("--------------------+-+----------------------+-----------------------")
+    print(
+        f" {''.center(Tier.MAX_LENGTH)}   | {'Total'.center(20)} | {'Remaining'.center(20)}"
+    )
+    print(f"{'-' * 20}+-+{'-' * 22}+{'-' * 23}")
 
     for index, (key, value) in enumerate(stats[Statistics.TIERS].items(), 1):
         name = key.center(Tier.MAX_LENGTH)
@@ -158,7 +172,7 @@ def show_word_tiers(stats: dict):
         print(f" {____} |{tick_top}| {total_top} | {left_top}")
 
         if index != len(stats[Statistics.TIERS]):
-            print("--------------------+-+----------------------+-----------------------")
+            print(f"{'-' * 20}+-+{'-' * 22}+{'-' * 23}")
         else:
             create_a_border("=")
 
@@ -171,10 +185,10 @@ def get_answer(main):
     answer = input(">>> ").strip()
 
     if answer == "w":
-        input("Press enter to exit...")
+        input('\nPress "Enter" to return to the menu...')
         return False
     elif answer == "r":
-        input("Press enter to restart...")
+        input('\nPress "Enter" to restart...')
         return None
     elif answer == "q":
         exit()
@@ -184,7 +198,7 @@ def get_answer(main):
 
 
 def create_a_settings_table() -> List[str]:
-    headers = ["#", "Name".ljust(50), "Value"]
+    headers = ["#", "Name".center(50), "Value"]
     table = [
         [index, key.capitalize(), value]
         for index, (key, value) in enumerate(CONFIG.items(), 1)
@@ -229,7 +243,10 @@ def create_a_table(
     return [str(element[0]) for element in table]
 
 
-def create_a_table_v2(headers: list, rows: list, bottom_border: str = "-"):
+def create_a_table_v2(
+    headers: list, rows: list, bottom_border: str = "-", center=False
+):
+    stralign = "center" if center else "default"
     table = [[index] + row for index, row in enumerate(rows, 1)]
-    print(tabulate(table, headers, tablefmt="presto"))
+    print(tabulate(table, headers, tablefmt="presto", stralign=stralign))
     create_a_border(bottom_border)
