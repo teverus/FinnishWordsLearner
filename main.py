@@ -34,8 +34,8 @@ class FinnishWordsLearner:
         create_a_title(WELCOME_MESSAGE)
 
         available_options = create_a_table(
-            headers=["#", "Option"],
-            rows=[f"Start (practice {self.words_per_run} words)", "Settings"],
+            headers=["Option"],
+            rows=[f"Start (words to practice: {self.words_per_run})", "Settings"],
         )
 
         user_choice = get_user_choice(available_options)

@@ -219,31 +219,56 @@ def create_a_table(
     center: bool = False,
     show_exit: bool = True,
     go_back: bool = False,
+    show_index: bool = True,
+    index_start: int = 1,
+    upper_headers: bool = False,
 ) -> List[str]:
-    status = "center" if center else "default"
+    full_width, remainder, remainder_used = get_paddings(headers)
 
-    no_index = headers[1:]
+    headers.insert(0, "#") if show_index else headers
+    headers = [h.upper() for h in headers] if upper_headers else headers
 
-    separators = (len(headers) + 1)
-    padding = (len(headers) * 2)
-    default_padding = (len(headers[1:]) * 3)
-    full_width = SCREEN_WIDTH - separators - padding - default_padding
-
-    if len(no_index) == 1:
+    if len(headers[1:]) == 1:
         headers[1] = headers[1].ljust(full_width)
+    else:
+        for index, header in enumerate(headers):
+            if index != 0:
+                extra = remainder if not remainder_used else 0
+                padding_final = round(full_width / len(headers[1:])) + extra
+                if center:
+                    headers[index] = headers[index].center(padding_final)
+                else:
+                    headers[index] = headers[index].ljust(padding_final)
+                remainder_used = True
 
     table = [
         [index] + row if isinstance(row, list) else [index, row]
-        for index, row in enumerate(rows, 1)
+        for index, row in enumerate(rows, index_start)
     ]
 
-    if show_exit:
-        table += [[0, "Exit the application", ""]]
+    table = table + [[0, "Exit the application", ""]] if show_exit else table
+    table = table + [["00", "Go back", ""]] if go_back else table
 
-    if go_back:
-        table += [["00", "Go back", ""]]
-
-    print(tabulate(table, headers, tablefmt="presto", stralign=status))
+    print(
+        tabulate(
+            table,
+            headers,
+            tablefmt="presto",
+            stralign="center" if center else "default",
+        )
+    )
     create_a_border(bottom_border)
 
     return [str(element[0]) for element in table]
+
+
+def get_paddings(headers):
+    index_column = 5
+    separators = len(headers)
+    inside_cell = len(headers) * 1
+    padding = len(headers) * 3
+    full_width = SCREEN_WIDTH - sum([index_column, separators, inside_cell, padding])
+    remainder = full_width % 2 if full_width % 2 != 0 else 0
+    remainder_used = False
+
+    return full_width, remainder, remainder_used

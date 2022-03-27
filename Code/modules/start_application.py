@@ -9,7 +9,8 @@ from Code.ui_functions import (
     show_translate_prompt,
     get_answer,
     show_options,
-    create_a_table, show_title_head,
+    create_a_table,
+    show_title_head,
 )
 
 
@@ -75,15 +76,11 @@ class StartApplication:
                 for key, value in self.incorrect_answers.items()
             ]
             create_a_table(
-                headers=[
-                    "#",
-                    "English".center(17).upper(),
-                    "Correct".center(16).upper(),
-                    "Incorrect".center(16).upper(),
-                ],
+                headers=["English", "Correct", "Incorrect"],
+                upper_headers=True,
                 rows=incorrect_answers,
-                bottom_border="=",
-                center=True
+                center=True,
+                show_exit=False,
             )
 
 
