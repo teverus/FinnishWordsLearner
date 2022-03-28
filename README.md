@@ -12,10 +12,13 @@ My idea was to create an app that would help learning foreign words, following t
 # Quick start
 
 **Note:** You MUST have Python installed on your PC. This app is only compatible with Windows OS.
-1. **Close this repository** any way you like
+1. **Clone this repository** any way you like
 2. Open **START_ME.bat**
 3. Enjoy :)
 
-*The app will create a virtual environment folder and install all the dependencies on its own, not need to worry.*
+*The app will create a virtual environment folder and install all the dependencies on its own, not need to worry. The words in **all_words.xlsx** can be added or removed. Feel free to experiment.*
 
-*The words in **all_words.xlsx** can be added or removed. Feel free to experiment.*
+# Overview of the application
+FinnishWordsLearner was 4 major screens:
+* welcome screen
+[01](Screenshots/01.png)

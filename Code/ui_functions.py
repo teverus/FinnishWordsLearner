@@ -241,8 +241,15 @@ def create_a_table(
                     headers[index] = headers[index].ljust(padding_final)
                 remainder_used = True
 
+    for index, row in enumerate(rows):
+        if isinstance(row, list):
+            for index_, element in enumerate(row):
+                row[index_] = element.capitalize()
+        else:
+            rows[index] = row.capitalize()
+
     table = [
-        [index] + row if isinstance(row, list) else [index, row]
+        [index] + row if isinstance(row, list) else [index, row.capitalize()]
         for index, row in enumerate(rows, index_start)
     ]
 
