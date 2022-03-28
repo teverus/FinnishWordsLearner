@@ -20,5 +20,7 @@ My idea was to create an app that would help learning foreign words, following t
 
 # Overview of the application
 FinnishWordsLearner was 4 major screens:
-* welcome screen
-[01](Screenshots/01.png)
+* Welcome screen
+![Welcome](Screenshots/01.png)
+* Settings screen
+![Settings](Screenshots/02.png)
