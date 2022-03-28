@@ -8,3 +8,14 @@ My idea was to create an app that would help learning foreign words, following t
 * **focus on translation to the foreign language** not vice versa because this trains active vocabulary
 * **make a user repeat a word one got wrong several times** to reinforce the right variant
 * **have a nice looking UI** so that one could see one's statistics at a glance
+
+# Quick start
+
+**Note:** You MUST have Python installed on your PC. This app is only compatible with Windows OS.
+1. **Close this repository** any way you like
+2. Open **START_ME.bat**
+3. Enjoy :)
+
+*The app will create a virtual environment folder and install all the dependencies on its own, not need to worry.*
+
+*The words in **all_words.xlsx** can be added or removed. Feel free to experiment.*
