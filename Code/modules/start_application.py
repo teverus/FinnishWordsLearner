@@ -81,6 +81,7 @@ class StartApplication:
                 rows=incorrect_answers,
                 center=True,
                 show_exit=False,
+                capitalize_rows=False
             )
 
 

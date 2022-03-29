@@ -56,7 +56,8 @@ class ChangeSettings:
         df.loc[:, SCORE] = 0
         df.to_excel(ALL_WORDS, index=False)
 
-        print_a_message("Scores were set to 0", centered=True)
+        print(" ")
+        print_a_message("Scores were set to zero", centered=True, border="=")
 
 
 if __name__ == "__main__":

@@ -111,7 +111,7 @@ def check_answer(main) -> int:
         score_delta = 1
 
         print(" ")
-        print_a_message("CORRECT :)", centered=True, border="=")
+        print_a_message("CORRECT", centered=True, border="=")
 
     else:
         main.incorrect_answers[main.index] = {Word.ENGLISH: main.word.english}
@@ -120,8 +120,14 @@ def check_answer(main) -> int:
         target_stats = Statistics.INCORRECT
         score_delta = -1
 
-        user_answer = f'\n        not "{answer}"' if answer else ""
-        print_a_message(f"""Sorry, it's "{expected_answer}"{user_answer}""")
+        user_answer = f', not "{answer}"' if answer else ""
+        print("")
+        print_a_message(
+            f"""Sorry, it's "{expected_answer}"{user_answer}""",
+            border="~",
+            centered=True,
+        )
+        print("")
 
         make_user_write_type_three_times(main)
 

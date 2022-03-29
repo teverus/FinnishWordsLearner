@@ -132,7 +132,7 @@ def get_longest_total_number(stats: dict) -> int:
 def show_title_head(self):
     os.system("cls")
     create_a_border("=")
-    current_statistics = f"WORD {self.index:02} OF {self.words_per_run}".center(20)
+    current_statistics = f"WORD {self.index:02} OF {self.words_per_run:02}".center(20)
     word_title = f"                      | {current_statistics} |"
     print(word_title)
     create_a_border()
@@ -150,7 +150,7 @@ def show_word_tiers(stats: dict):
     print(
         f" {''.center(Tier.MAX_LENGTH)}   | {'Total'.center(20)} | {'Remaining'.center(20)}"
     )
-    print(f"{'-' * 20}+-+{'-' * 22}+{'-' * 23}")
+    print(f"{'-' * 20}--+{'-' * 22}+{'-' * 23}")
 
     for index, (key, value) in enumerate(stats[Statistics.TIERS].items(), 1):
         name = key.center(Tier.MAX_LENGTH)
@@ -178,11 +178,11 @@ def show_word_tiers(stats: dict):
 
 
 def show_translate_prompt(word: str):
-    print(f"\nTranslate: {word}")
+    print(f"\nEnglish: {word}")
 
 
 def get_answer(main):
-    answer = input(">>> ").strip()
+    answer = input("Finnish: ").strip()
 
     if answer == "w":
         input('\nPress "Enter" to return to the menu...')
@@ -211,7 +211,6 @@ def create_a_settings_table() -> List[str]:
     return [str(element[0]) for element in table]
 
 
-# TODO show index и прочее
 def create_a_table(
     headers: list,
     rows: list,
@@ -222,6 +221,7 @@ def create_a_table(
     show_index: bool = True,
     index_start: int = 1,
     upper_headers: bool = False,
+    capitalize_rows: bool = True
 ) -> List[str]:
     full_width, remainder, remainder_used = get_paddings(headers)
 
@@ -244,9 +244,9 @@ def create_a_table(
     for index, row in enumerate(rows):
         if isinstance(row, list):
             for index_, element in enumerate(row):
-                row[index_] = element.capitalize()
+                row[index_] = element.capitalize() if capitalize_rows else element
         else:
-            rows[index] = row.capitalize()
+            rows[index] = row.capitalize() if capitalize_rows else row
 
     table = [
         [index] + row if isinstance(row, list) else [index, row.capitalize()]
