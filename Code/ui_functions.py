@@ -117,7 +117,7 @@ def show_run_statistics(stats: dict):
     print(f" PASS {correct} |{correct_bar}| {correct_percentage} %")
     print(f" FAIL {incorrect} |{incorrect_bar}| {incorrect_percentage} %")
     print(f" DONE {total} |{total_bar}| {total_percentage} %")
-    create_a_border()
+    create_a_border("=")
 
 
 def get_longest_total_number(stats: dict) -> int:
@@ -132,13 +132,12 @@ def get_longest_total_number(stats: dict) -> int:
 def show_title_head(self):
     os.system("cls")
     create_a_border("=")
-    current_statistics = f"WORD {self.index:02} OF {self.words_per_run:02}".center(20)
-    word_title = f"                      | {current_statistics} |"
-    print(word_title)
-    create_a_border()
+    current_statistics = f"WORD {self.index:02} OF {self.words_per_run:02}".center(22)
+    print(f"{'-' * 22}|{current_statistics}|{'-' * 23}")
+    create_a_border("=")
     print(USER_TIPS.center(SCREEN_WIDTH))
     print(TRANSFORMATION.center(SCREEN_WIDTH))
-    create_a_border("=")
+    create_a_border()
 
 
 def show_word_tiers(stats: dict):
