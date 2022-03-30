@@ -111,7 +111,7 @@ def check_answer(main) -> int:
         score_delta = 1
 
         print(" ")
-        print_a_message("CORRECT", centered=True, border="=")
+        print_a_message(f"{'-' * 23}{'CORRECT ANSWER'.center(22)}{'-' * 24}", border="=")
 
     else:
         main.incorrect_answers[main.index] = {Word.ENGLISH: main.word.english}

@@ -184,6 +184,7 @@ def show_translate_prompt(word: str):
 def get_answer(main):
     answer = input("Finnish: ").strip()
 
+    # TODO переключать на экран результатов
     if answer == "w":
         input('\nPress "Enter" to return to the menu...')
         return False
