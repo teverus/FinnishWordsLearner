@@ -177,18 +177,18 @@ def show_word_tiers(stats: dict):
 
 
 def show_translate_prompt(word: str):
-    print(f"\nEnglish: {word}")
+    print(f"\n English: {word}")
 
 
 def get_answer(main):
-    answer = input("Finnish: ").strip()
+    answer = input(" Finnish: ").strip()
 
     # TODO переключать на экран результатов
     if answer == "w":
-        input('\nPress "Enter" to return to the menu...')
+        input('\n Press "Enter" to return to the menu...')
         return False
     elif answer == "r":
-        input('\nPress "Enter" to restart...')
+        input('\n Press "Enter" to restart...')
         return None
     elif answer == "q":
         exit()

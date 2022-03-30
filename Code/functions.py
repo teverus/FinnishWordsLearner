@@ -148,7 +148,7 @@ def update_current_tier(main):
 
 
 def make_user_write_type_three_times(main):
-    print(f'Please type "{main.word.finnish}" and hit "Enter" three times.')
+    print(f' Please type "{main.word.finnish}" and hit "Enter" three times.')
 
     correct_times = 0
     max_times = 3
