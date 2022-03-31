@@ -35,7 +35,7 @@ class ChangeSettings:
     @staticmethod
     def change_setting(user_choice):
         setting = list(CONFIG.keys())[int(user_choice) - 1]
-        new_value = input(f'New value for "{setting.capitalize()}": ').strip()
+        new_value = input(f' New value for "{setting.capitalize()}": ').strip()
 
         CONFIG_PARSER[SETTINGS][setting] = new_value
         with open(SETTINGS_FILE, "w") as config_file:

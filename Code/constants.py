@@ -12,7 +12,7 @@ DOT = "\u00b7"
 
 TITLE = "[ Word {} of {} ]"
 USER_TIPS = """If you can't remember a specific word, just press "Enter" key"""
-TRANSFORMATION = """a: -> ä | o: -> ö | w -> go back to menu | r -> restart | q -> exit"""
+TRANSFORMATION = """a: -> ä | o: -> ö | q -> end run | r -> start a new run"""
 
 
 ALL_WORDS = "all_words_test.xlsx"
@@ -52,6 +52,7 @@ class Tier:
 class ExitCodes:
     SHOW_WELCOME_SCREEN = "00"
     START_THE_APPLICATION = "1"
+    GO_TO_SETTINGS = "2"
 
 
 class Word:

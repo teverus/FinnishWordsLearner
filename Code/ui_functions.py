@@ -183,15 +183,8 @@ def show_translate_prompt(word: str):
 def get_answer(main):
     answer = input(" Finnish: ").strip()
 
-    # TODO переключать на экран результатов
-    if answer == "w":
-        input('\n Press "Enter" to return to the menu...')
+    if answer in ["q", "r"]:
         return False
-    elif answer == "r":
-        input('\n Press "Enter" to restart...')
-        return None
-    elif answer == "q":
-        exit()
     else:
         main.answer = answer.replace("a:", "ä").replace("o:", "ö")
         return True

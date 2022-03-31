@@ -1,6 +1,6 @@
 from Code.constants import CONFIG, Settings, WELCOME_MESSAGE
 from Code.modules.change_settings import ChangeSettings
-from Code.modules.start_application import StartApplication
+from Code.modules.start_application import StartARun
 from Code.ui_functions import (
     create_a_title,
     get_user_choice,
@@ -15,7 +15,7 @@ class FinnishWordsLearner:
         self.words_per_run = int(CONFIG[Settings.WORDS_PER_RUN])
 
         self.options = {
-            "1": StartApplication,
+            "1": StartARun,
             "2": ChangeSettings,
             "0": exit,
             "00": self.show_welcome_screen,

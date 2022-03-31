@@ -10,11 +10,11 @@ from Code.ui_functions import (
     get_answer,
     show_options,
     create_a_table,
-    show_title_head,
+    show_title_head, get_user_choice,
 )
 
 
-class StartApplication:
+class StartARun:
     def __init__(self, words_per_run):
         self.words_per_run = words_per_run
         self.snapshot = get_all_words()
@@ -47,24 +47,25 @@ class StartApplication:
                 input("""\n Press "Enter" to continue...""")
 
             else:
-                if answer is None:
-                    self.result = ExitCodes.START_THE_APPLICATION
-                else:
-                    self.result = ExitCodes.SHOW_WELCOME_SCREEN
-                return
+                break
 
         self.show_results()
 
-        user_choice = show_options(
-            title="\n What would you like to do next?",
-            options=["Practice more", "Exit"],
-            last_is_zero=True,
+        available_options = create_a_table(
+            headers=["What would you like to do next?"],
+            rows=["Start a new run", 'Go to "Settings"', "Go to main menu"]
         )
+        user_choice = get_user_choice(available_options)
 
         if user_choice == "0":
             exit()
         else:
-            self.result = ExitCodes.START_THE_APPLICATION
+            options = {
+                "1": ExitCodes.START_THE_APPLICATION,
+                "2": ExitCodes.GO_TO_SETTINGS,
+                "3": ExitCodes.SHOW_WELCOME_SCREEN
+            }
+            self.result = options[user_choice]
             return
 
     def show_results(self):
@@ -86,4 +87,4 @@ class StartApplication:
 
 
 if __name__ == "__main__":
-    StartApplication(None)
+    StartARun(None)
