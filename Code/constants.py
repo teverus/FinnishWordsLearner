@@ -15,7 +15,7 @@ USER_TIPS = """If you can't remember a specific word, just press "Enter" key"""
 TRANSFORMATION = """a: -> ä | o: -> ö | w -> go back to menu | r -> restart | q -> exit"""
 
 
-ALL_WORDS = "all_words.xlsx"
+ALL_WORDS = "all_words_test.xlsx"
 SCORE = "Score"
 COUNT = "Count"
 

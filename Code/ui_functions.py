@@ -60,7 +60,7 @@ def show_options(options: list, title: str = None, last_is_zero: bool = False) -
 
     for index, element in enumerate(options, 1):
         index = 0 if last_is_zero and index == len(options) else index
-        print(f"{index} - {element}")
+        print(f" {index} - {element}")
         available_options.append(str(index))
 
     user_choice = get_user_choice(available_options)
@@ -69,12 +69,12 @@ def show_options(options: list, title: str = None, last_is_zero: bool = False) -
 
 
 def get_user_choice(available_options: List[str]) -> str:
-    user_choice = input("\nPlease, enter your choice: ")
+    user_choice = input("\n Please, enter your choice: ")
 
     while user_choice not in available_options:
         guidelines = ", ".join(available_options)
-        print(f"[WARNING] You must enter one of these values: {guidelines}")
-        user_choice = input("\nPlease, enter your choice: ")
+        print(f" [WARNING] You must enter one of these values: {guidelines}")
+        user_choice = input("\n Please, enter your choice: ")
 
     return user_choice
 

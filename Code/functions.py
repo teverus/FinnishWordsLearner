@@ -153,15 +153,15 @@ def make_user_write_type_three_times(main):
     correct_times = 0
     max_times = 3
     while correct_times != max_times:
-        user_input = input(">>> ").replace("a:", "ä").replace("o:", "ö")
+        user_input = input(" >>> ").replace("a:", "ä").replace("o:", "ö")
         if user_input == main.word.finnish:
             correct_times += 1
             if correct_times == max_times:
-                print(f"[SUCCESS] That's it :) Keep on learning :)")
+                print(f" [SUCCESS] That's it :) Keep on learning :)")
             else:
-                print(f"[SUCCESS] Yes! {max_times - correct_times} to go!")
+                print(f" [SUCCESS] Yes! {max_times - correct_times} to go!")
         else:
-            print(f'[FAILURE] Nope, you need to type "{main.word.finnish}".')
+            print(f' [FAILURE] Nope, you need to type "{main.word.finnish}".')
 
 
 def remove_current_word_from_snapshot(main):

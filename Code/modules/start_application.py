@@ -44,7 +44,7 @@ class StartApplication:
 
                 update_word_score(self, score_delta)
 
-                input("""\nPress "Enter" to continue...""")
+                input("""\n Press "Enter" to continue...""")
 
             else:
                 if answer is None:
@@ -56,7 +56,7 @@ class StartApplication:
         self.show_results()
 
         user_choice = show_options(
-            title="\nWhat would you like to do next?",
+            title="\n What would you like to do next?",
             options=["Practice more", "Exit"],
             last_is_zero=True,
         )
