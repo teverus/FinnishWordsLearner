@@ -235,11 +235,10 @@ def create_a_table(
                 remainder_used = True
 
     for index, row in enumerate(rows):
-        if isinstance(row, list):
-            for index_, element in enumerate(row):
-                row[index_] = element.capitalize() if capitalize_rows else element
-        else:
-            rows[index] = row.capitalize() if capitalize_rows else row
+        row = [row] if not isinstance(row, list) else row
+        for index_, element in enumerate(row):
+            element = f"{element[:18]}~" if len(element) >= 22 else element
+            row[index_] = element.capitalize() if capitalize_rows else element
 
     table = [
         [index] + row if isinstance(row, list) else [index, row.capitalize()]
