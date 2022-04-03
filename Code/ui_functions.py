@@ -237,6 +237,7 @@ def create_a_table(
     for index, row in enumerate(rows):
         row = [row] if not isinstance(row, list) else row
         for index_, element in enumerate(row):
+            element = str(element)
             element = f"{element[:18]}~" if len(element) >= 22 else element
             row[index_] = element.capitalize() if capitalize_rows else element
 
