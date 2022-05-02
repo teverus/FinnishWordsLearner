@@ -1,3 +1,4 @@
+from Code.TeverusSDK.CLI_tools.table import create_a_table
 from Code.Word import Word
 from Code.constants import *
 from Code.db_functions import get_all_words, update_word_score
@@ -10,7 +11,8 @@ from Code.ui_functions import (
     get_answer,
     show_options,
     create_a_table_old,
-    show_title_head, get_user_choice,
+    show_title_head,
+    get_user_choice,
 )
 
 
@@ -51,9 +53,19 @@ class StartARun:
 
         self.show_results()
 
-        available_options = create_a_table_old(
+        available_options = create_a_table(
             headers=["What would you like to do next?"],
-            rows=["Start a new run", 'Go to "Settings"', "Go to main menu"]
+            headers_centered=True,
+            rows=[
+                "Start a new run",
+                'Go to "Settings"',
+                "Go to main menu",
+                "Exit the application",
+            ],
+            custom_index={"Exit the application": 0},
+            border_headers_top=False,
+            border_rows_bottom="=",
+            table_width=SCREEN_WIDTH,
         )
         user_choice = get_user_choice(available_options)
 
@@ -63,7 +75,7 @@ class StartARun:
             options = {
                 "1": ExitCodes.START_THE_APPLICATION,
                 "2": ExitCodes.GO_TO_SETTINGS,
-                "3": ExitCodes.SHOW_WELCOME_SCREEN
+                "3": ExitCodes.SHOW_WELCOME_SCREEN,
             }
             self.result = options[user_choice]
             return
@@ -71,18 +83,22 @@ class StartARun:
     def show_results(self):
         create_a_title("Your results")
         show_run_statistics(self.stats)
+
         if self.incorrect_answers:
             incorrect_answers = [
                 list(self.incorrect_answers[key].values())
                 for key, value in self.incorrect_answers.items()
             ]
-            create_a_table_old(
+
+            create_a_table(
                 headers=["English", "Correct", "Incorrect"],
-                upper_headers=True,
+                headers_upper=True,
+                headers_centered=True,
                 rows=incorrect_answers,
-                center=True,
-                show_exit=False,
-                capitalize_rows=False
+                rows_centered=True,
+                table_width=SCREEN_WIDTH,
+                border_headers_top=False,
+                border_rows_bottom="=",
             )
 
 
