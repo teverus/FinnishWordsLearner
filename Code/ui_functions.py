@@ -204,7 +204,7 @@ def create_a_settings_table() -> List[str]:
     return [str(element[0]) for element in table]
 
 
-def create_a_table(
+def create_a_table_old(
     headers: list,
     rows: list,
     bottom_border: str = "=",

@@ -9,7 +9,7 @@ from Code.ui_functions import (
     show_translate_prompt,
     get_answer,
     show_options,
-    create_a_table,
+    create_a_table_old,
     show_title_head, get_user_choice,
 )
 
@@ -51,7 +51,7 @@ class StartARun:
 
         self.show_results()
 
-        available_options = create_a_table(
+        available_options = create_a_table_old(
             headers=["What would you like to do next?"],
             rows=["Start a new run", 'Go to "Settings"', "Go to main menu"]
         )
@@ -76,7 +76,7 @@ class StartARun:
                 list(self.incorrect_answers[key].values())
                 for key, value in self.incorrect_answers.items()
             ]
-            create_a_table(
+            create_a_table_old(
                 headers=["English", "Correct", "Incorrect"],
                 upper_headers=True,
                 rows=incorrect_answers,

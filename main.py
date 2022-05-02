@@ -1,10 +1,11 @@
-from Code.constants import CONFIG, Settings, WELCOME_MESSAGE
+from Code.TeverusSDK.CLI_tools.table import create_a_table
+from Code.constants import CONFIG, Settings, WELCOME_MESSAGE, SCREEN_WIDTH
 from Code.modules.change_settings import ChangeSettings
 from Code.modules.start_application import StartARun
 from Code.ui_functions import (
     create_a_title,
     get_user_choice,
-    create_a_table,
+    create_a_table_old, clear_console,
 )
 
 
@@ -31,11 +32,17 @@ class FinnishWordsLearner:
             choice = module.result
 
     def show_welcome_screen(self):
-        create_a_title(WELCOME_MESSAGE)
-
+        clear_console()
         available_options = create_a_table(
-            headers=["Option"],
-            rows=[f"Start (words to practice: {self.words_per_run})", "Settings"],
+            table_title=WELCOME_MESSAGE,
+            headers=["Option", "Words to practice"],
+            headers_centered=True,
+            rows=[["Start a run", self.words_per_run], ["Settings"], ["Exit"]],
+            custom_index={"Exit": 0},
+            rows_centered=True,
+            table_width=SCREEN_WIDTH,
+            border_headers_top="=",
+            border_rows_bottom="=",
         )
 
         user_choice = get_user_choice(available_options)
