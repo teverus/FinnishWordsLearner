@@ -1,4 +1,4 @@
-from Code.TeverusSDK.CLI_tools.table import create_a_table
+from Code.TeverusSDK.CLI_tools.table import Table
 from Code.constants import *
 from Code.db_functions import get_all_words
 from Code.ui_functions import (
@@ -15,7 +15,7 @@ class ChangeSettings:
 
     def run(self):
         clear_console()
-        available_options = create_a_table(
+        available_options = Table(
             headers=["Name", "Value"],
             rows=[[key.capitalize(), value] for key, value in CONFIG.items()]
             + ["Exit the application", "Go back"],
@@ -26,7 +26,7 @@ class ChangeSettings:
             table_title="Settings",
             border_headers_top="=",
             border_rows_bottom="=",
-        )
+        ).available_options
 
         options = {"1": self.change_setting, "2": self.reset_scores}
 

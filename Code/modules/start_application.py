@@ -1,4 +1,4 @@
-from Code.TeverusSDK.CLI_tools.table import create_a_table
+from Code.TeverusSDK.CLI_tools.table import Table
 from Code.Word import Word
 from Code.constants import *
 from Code.db_functions import get_all_words, update_word_score
@@ -9,8 +9,6 @@ from Code.ui_functions import (
     show_word_tiers,
     show_translate_prompt,
     get_answer,
-    show_options,
-    create_a_table_old,
     show_title_head,
     get_user_choice,
 )
@@ -53,7 +51,7 @@ class StartARun:
 
         self.show_results()
 
-        available_options = create_a_table(
+        available_options = Table(
             headers=["What would you like to do next?"],
             headers_centered=True,
             rows=[
@@ -66,7 +64,7 @@ class StartARun:
             border_headers_top=False,
             border_rows_bottom="=",
             table_width=SCREEN_WIDTH,
-        )
+        ).available_options
         user_choice = get_user_choice(available_options)
 
         if user_choice == "0":
@@ -90,7 +88,7 @@ class StartARun:
                 for key, value in self.incorrect_answers.items()
             ]
 
-            create_a_table(
+            Table(
                 headers=["English", "Correct", "Incorrect"],
                 headers_upper=True,
                 headers_centered=True,
