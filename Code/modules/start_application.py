@@ -10,7 +10,7 @@ from Code.ui_functions import (
     show_translate_prompt,
     get_answer,
     show_title_head,
-    get_user_choice,
+    get_user_choice, create_a_border,
 )
 
 
@@ -36,8 +36,14 @@ class StartARun:
             show_run_statistics(self.stats)
             show_word_tiers(self.stats)
 
-            show_translate_prompt(self.word.english)
+            # show_translate_prompt(self.word.english)
+            # answer = get_answer(self)
+
+            print(f" {'ENGLISH'.center(31)} | {'FINNISH'.center(31)}")
+            print(f"{'-' * 33}+{'-' * 35}")
+            # Если английское слово слишком длинное, надо что-то думать
             answer = get_answer(self)
+            create_a_border("=")
 
             if answer:
                 score_delta = check_answer(self)

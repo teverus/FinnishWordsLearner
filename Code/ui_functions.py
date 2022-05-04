@@ -181,7 +181,7 @@ def show_translate_prompt(word: str):
 
 
 def get_answer(main):
-    answer = input(" Finnish: ").strip()
+    answer = input(f" {main.word.english.center(31)} | >>> ").strip()
 
     if answer in ["q", "r"]:
         return False
