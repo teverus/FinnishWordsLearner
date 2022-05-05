@@ -41,7 +41,7 @@ class StartARun:
 
             print(f" {'ENGLISH'.center(31)} | {'FINNISH'.center(31)}")
             print(f"{'-' * 33}+{'-' * 35}")
-            # Если английское слово слишком длинное, надо что-то думать
+            # TODO если слов с ошибкой больше 10 было
             answer = get_answer(self)
             create_a_border("=")
 

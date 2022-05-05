@@ -181,7 +181,15 @@ def show_translate_prompt(word: str):
 
 
 def get_answer(main):
-    answer = input(f" {main.word.english.center(31)} | >>> ").strip()
+    max_width = 31
+    if len(main.word.english) > max_width:
+        tail = main.word.english[-3:]
+        head = main.word.english[: (max_width - len(tail) - 1)]
+        word = f"{head}~{tail}"
+    else:
+        word = f"{main.word.english.center(31)}"
+
+    answer = input(f" {word} | >>> ").strip()
 
     if answer in ["q", "r"]:
         return False
@@ -214,7 +222,7 @@ def create_a_table_old(
     show_index: bool = True,
     index_start: int = 1,
     upper_headers: bool = False,
-    capitalize_rows: bool = True
+    capitalize_rows: bool = True,
 ) -> List[str]:
     full_width, remainder, remainder_used = get_paddings(headers)
 
