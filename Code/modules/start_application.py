@@ -7,10 +7,10 @@ from Code.ui_functions import (
     create_a_title,
     show_run_statistics,
     show_word_tiers,
-    show_translate_prompt,
     get_answer,
     show_title_head,
-    get_user_choice, create_a_border,
+    get_user_choice,
+    create_a_border,
 )
 
 
