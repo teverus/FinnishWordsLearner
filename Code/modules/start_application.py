@@ -36,12 +36,9 @@ class StartARun:
             show_run_statistics(self.stats)
             show_word_tiers(self.stats)
 
-            # show_translate_prompt(self.word.english)
-            # answer = get_answer(self)
-
             print(f" {'ENGLISH'.center(31)} | {'FINNISH'.center(31)}")
             print(f"{'-' * 33}+{'-' * 35}")
-            # TODO если слов с ошибкой больше 10 было
+
             answer = get_answer(self)
             create_a_border("=")
 
@@ -57,6 +54,7 @@ class StartARun:
 
         self.show_results()
 
+        # TODO если слов с ошибкой больше 10 было
         available_options = Table(
             headers=["What would you like to do next?"],
             headers_centered=True,
@@ -70,6 +68,8 @@ class StartARun:
             border_headers_top=False,
             border_rows_bottom="=",
             table_width=SCREEN_WIDTH,
+            # column_width={-1: len(str(len(self.incorrect_answers)))},
+            column_width={-1: 10}
         ).available_options
         user_choice = get_user_choice(available_options)
 
