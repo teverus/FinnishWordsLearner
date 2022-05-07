@@ -54,7 +54,6 @@ class StartARun:
 
         self.show_results()
 
-        # TODO если слов с ошибкой больше 10 было
         available_options = Table(
             headers=["What would you like to do next?"],
             headers_centered=True,
@@ -68,8 +67,7 @@ class StartARun:
             border_headers_top=False,
             border_rows_bottom="=",
             table_width=SCREEN_WIDTH,
-            # column_width={-1: len(str(len(self.incorrect_answers)))},
-            column_width={-1: 10}
+            index_column_width=len(str(len(self.incorrect_answers))),
         ).available_options
         user_choice = get_user_choice(available_options)
 
