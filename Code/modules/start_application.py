@@ -1,8 +1,8 @@
-from Code.TeverusSDK.CLI_tools.table import Table
 from Code.Word import Word
 from Code.constants import *
 from Code.db_functions import get_all_words, update_word_score
 from Code.functions import get_stats, get_random_word, check_answer
+from Code.table import Table
 from Code.ui_functions import (
     create_a_title,
     show_run_statistics,

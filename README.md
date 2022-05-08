@@ -1,5 +1,5 @@
 # FinnishWordsLearner
-An easy and effective way to learn Finnish words
+An easy and effective way to learn Finnish words.
 
 # General idea
 My idea was to create an app that would help learning foreign words, following these principles:
