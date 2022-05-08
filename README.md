@@ -27,3 +27,11 @@ FinnishWordsLearner was 4 major screens:
 * Settings screen
 
 ![Settings](Screenshots/02.png)
+
+* Learning screen
+
+![Learning](Screenshots/03.png)
+
+* Results screen
+
+![Results](Screenshots/04.png)
